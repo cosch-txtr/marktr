@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  ios_id: MyString
+  android_id: MyString
+  win8_id: MyString
+
+two:
+  name: MyString
+  ios_id: MyString
+  android_id: MyString
+  win8_id: MyString

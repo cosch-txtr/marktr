@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  android_id: MyString
+  rating: 9.99
+  five: 1
+  four: 1
+  three: 1
+  two: 1
+  one: 1
+  app_id: 
+
+two:
+  android_id: MyString
+  rating: 9.99
+  five: 1
+  four: 1
+  three: 1
+  two: 1
+  one: 1
+  app_id: 
