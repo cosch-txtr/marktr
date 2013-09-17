@@ -49,3 +49,6 @@ gem 'whenever'
 
 # Use market_bot for google play lookups
 gem 'market_bot'
+
+# google visualisation
+gem 'gvis', '>= 2.0.0'

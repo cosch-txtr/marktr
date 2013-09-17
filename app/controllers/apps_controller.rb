@@ -1,2 +1,10 @@
 class AppsController < ApplicationController
+
+	def android
+		@ratings = []
+		App.android.each do |app|
+			@ratings += app.android_ratings
+		end
+	end
+
 end

@@ -7,8 +7,7 @@ puts "running daily workers on #{Rails.env}"
 def store_android_ratings
   puts "store_android_ratings: in"
   
-  App.all.each do |app|    
-    if app.android_id 
+  App.android.each do |app|    
       puts "searching for:#{app.name}:#{app.android_id}"
       m_app = MarketBot::Android::App.new('com.txtr.android')
       m_app.update
@@ -22,7 +21,6 @@ def store_android_ratings
         :two=>m_app.rating_distribution[2],
         :one=>m_app.rating_distribution[1]
         })
-    end
   end
 
   puts "store_android_ratings: out"
