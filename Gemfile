@@ -46,3 +46,6 @@ end
 
 # Use whenever to run cron jobs
 gem 'whenever'
+
+# Use market_bot for google play lookups
+gem 'market_bot'
