@@ -9,17 +9,13 @@ def store_android_ratings
   
   App.android.each do |app|    
       puts "searching for:#{app.name}:#{app.android_id}"
-      m_app = MarketBot::Android::App.new('com.txtr.android')
+      m_app = MarketBot::Android::App.new(app.android_id)
       m_app.update
-      puts "\t(#{m_app.title}) price: #{m_app.price} rating: #{m_app.rating} #{m_app.rating_distribution}"
+      puts "\t(#{m_app.title}) price: #{m_app.price} rating: #{m_app.rating} <- #{m_app.votes}"
       
       app.android_ratings.create( {
         :rating=>m_app.rating,
-        :five=>m_app.rating_distribution[5],
-        :four=>m_app.rating_distribution[4],
-        :three=>m_app.rating_distribution[3],
-        :two=>m_app.rating_distribution[2],
-        :one=>m_app.rating_distribution[1]
+        :votes=>m_app.votes
         })
   end
 

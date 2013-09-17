@@ -16,11 +16,7 @@ ActiveRecord::Schema.define(version: 20130917082522) do
   create_table "android_ratings", force: true do |t|
     t.string   "android_id"
     t.decimal  "rating",     precision: 7, scale: 2
-    t.integer  "five"
-    t.integer  "four"
-    t.integer  "three"
-    t.integer  "two"
-    t.integer  "one"
+    t.integer  "votes"
     t.integer  "app_id"
     t.datetime "created_at"
     t.datetime "updated_at"

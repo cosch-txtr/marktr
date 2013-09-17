@@ -2,6 +2,10 @@ class AndroidRating < ActiveRecord::Base
   belongs_to :app
 
   def base
-  	five+four+three+two+one
+  	votes
+  end
+
+  def rating_nice
+  	(sprintf "%.2f", rating).to_f
   end
 end

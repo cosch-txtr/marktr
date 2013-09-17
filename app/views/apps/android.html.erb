@@ -1,4 +1,4 @@
-<% visualization "my_chart", "MotionChart", :width => 600, :height => 400, :html => {:class => "graph_chart"} do |chart| %>
+<% visualization "my_chart", "MotionChart", :width => 800, :height => 600, :html => {:class => "graph_chart"} do |chart| %>
     <%# Add the columns that the graph will have %>
     <% chart.string "App" %>
     <% chart.date "Date" %>
@@ -7,7 +7,7 @@
 
     <%# Add the data %>
 	<% @ratings.each do |r| %>
-		<% chart.add_row(["#{r.app.name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), (r.rating*10).ceil, r.base]) %>
+		<% chart.add_row(["#{r.app.name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.rating_nice, r.base]) %>
 	<% end	%>
 <% end %>
 
