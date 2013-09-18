@@ -7,4 +7,10 @@ class AppsController < ApplicationController
 		end
 	end
 
+	def itunes
+		@ratings = []
+		App.itunes.each do |app|
+			@ratings += app.itunes_ratings
+		end
+	end
 end

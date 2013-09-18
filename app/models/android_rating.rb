@@ -2,7 +2,7 @@ class AndroidRating < ActiveRecord::Base
   belongs_to :app
 
   def base
-  	votes
+  	Math.sqrt(votes)
   end
 
   def rating_nice

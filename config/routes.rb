@@ -3,7 +3,12 @@ Marktr::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'apps#android'
+  root 'apps#all'
+
+  get 'android' => 'apps#android'
+  get 'ios' => 'apps#itunes'
+  get 'itunes' => 'apps#itunes'
+  get 'all' => 'apps#all'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
