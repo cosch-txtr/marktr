@@ -1,4 +1,8 @@
-<% visualization "all", "MotionChart", :width => 800, :height => 600, :html => {:class => "graph_chart"} do |chart| %>
+<% options = '{\"duration\":{"multiplier\":1,\"timeUnit\":\"D\"},\"yLambda\":1,\"nonSelectedAlpha\":0.4,\"playDuration\":15000,\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"uniColorForNonSelected\":false,\"orderedByX\":false,\"iconKeySettings\":[],\"yZoomedIn\":false,\"time\":\"2013-09-18\",\"colorOption\":\"_UNIQUE_COLOR\",\"xAxisOption\":\"2\",\"yZoomedDataMax\":5,\"xZoomedDataMin\":1,\"orderedByY\":false,\"xLambda\":1,\"iconType\":\"BUBBLE\",\"showTrails\":true,\"yZoomedDataMin\":1,\"yAxisOption\":\"3\",\"xZoomedIn\":false,\"xZoomedDataMax\":5,\"sizeOption\":\"4\"}'
+%>
+
+<% visualization "all", "MotionChart", "width" => 800, "height" => 600, :state=>options, :html => {:class => "graph_chart"} do |chart| %>
+
     <%# Add the columns that the graph will have %>
     <% chart.string "App" %>
     <% chart.date "Date" %>
@@ -6,9 +10,12 @@
     <% chart.number "Android" %>
     <% chart.number "Base" %>
 
+    <% chart.add_row(["min", Date.today, 1, 1, 1]) 
+    chart.add_row(["max", Date.today, 5, 5, 1]) %>
+
     <%# Add the data %>
 	<% @ratings.each do |r|
-		chart.add_row(["#{r.app.name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.rating_nice, r.base]) 
+		chart.add_row(["#{r.app.name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.itunes_rating_nice, r.android_rating_nice, r.base]) 
 	end	%>
 <% end %>
 
