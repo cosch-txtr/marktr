@@ -50,5 +50,8 @@ gem 'whenever'
 # Use market_bot for google play lookups
 gem 'market_bot'
 
+# Itunes rating search
+gem "itunes-search-api"
+
 # google visualisation
 gem 'gvis', '>= 2.0.0'
