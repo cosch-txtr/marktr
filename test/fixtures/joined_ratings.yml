@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  itunes_id: MyString
+  ios_rating: 9.99
+  ios_votes: 1
+  android_id: MyString
+  android_rating: 9.99
+  android_votes: 1
+  app_id: 
+
+two:
+  itunes_id: MyString
+  ios_rating: 9.99
+  ios_votes: 1
+  android_id: MyString
+  android_rating: 9.99
+  android_votes: 1
+  app_id: 

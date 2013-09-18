@@ -3,8 +3,7 @@ class AppsController < ApplicationController
 	def all
 		@ratings = []
 		App.android_itunes.each do |app|
-			@ratings += app.android_ratings
-			@ratings += app.itunes_ratings
+			@ratings += app.joined_ratings
 		end
 	end
 
