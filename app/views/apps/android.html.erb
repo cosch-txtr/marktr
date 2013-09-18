@@ -1,5 +1,5 @@
 
-<% options = '{\"yLambda\":1,\"yZoomedIn\":false,\"showTrails\":true,\"duration\":{\"multiplier\":1,\"timeUnit\":\"D\"},\"yAxisOption\":\"3\",\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedDataMin\":1,\"time\":\"2013-09-18\",\"colorOption\":\"_UNIQUE_COLOR\",\"playDuration\":15000,\"xAxisOption\":\"2\",\"orderedByX\":false,\"yZoomedDataMax\":397.6329966187414,\"xLambda\":1,\"nonSelectedAlpha\":0.4,\"iconType\":\"BUBBLE\",\"uniColorForNonSelected\":false,\"orderedByY\":false,\"iconKeySettings\":[],\"yZoomedDataMin\":1,\"xZoomedIn\":false,\"xZoomedDataMax\":5,\"sizeOption\":\"3\"}'
+<% options = '{\"yLambda\":1,\"yZoomedIn\":false,\"showTrails\":true,\"duration\":{\"multiplier\":1,\"timeUnit\":\"D\"},\"yAxisOption\":\"3\",\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedDataMin\":1,\"colorOption\":\"_UNIQUE_COLOR\",\"playDuration\":15000,\"xAxisOption\":\"2\",\"orderedByX\":false,\"yZoomedDataMax\":397.6329966187414,\"xLambda\":1,\"nonSelectedAlpha\":0.4,\"iconType\":\"BUBBLE\",\"uniColorForNonSelected\":false,\"orderedByY\":false,\"iconKeySettings\":[],\"yZoomedDataMin\":1,\"xZoomedIn\":false,\"xZoomedDataMax\":5,\"sizeOption\":\"3\"}'
 %>
 
 <% visualization "android", "MotionChart", :width => 800, :height => 600, :state=>options, :html => {:class => "graph_chart"} do |chart| %>
@@ -9,8 +9,8 @@
     <% chart.number "Rating" %>
     <% chart.number "Base" %>
 
-    <% chart.add_row(["min", Date.today, 1, 1]) 
-    chart.add_row(["max", Date.today, 5, 1]) %>
+    <%# chart.add_row(["min", Date.today, 1, 0.1]) %>
+    <%# chart.add_row(["max", Date.today, 5, 0.1]) %>
 
     <%# Add the data %>
 	<% @ratings.each do |r| %>
