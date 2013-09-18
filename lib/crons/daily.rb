@@ -30,7 +30,7 @@ def store_itunes_ratings
   
   App.itunes.each do |app|    
       puts "searching for:#{app.name}:#{app.itunes_id}"
-      res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => "de")
+      res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => app.itunes_country)
       if !res
         puts "  fallback to US store ... "
         res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => "us") 
