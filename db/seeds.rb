@@ -16,5 +16,5 @@ App.create( { :name=>"pageplace", :android_id=>"de.telekom.epub", :itunes_id=>"4
 App.create( { :name=>"thalia", :android_id=>"com.freiheit.thalia.mobile", :itunes_id=>"350742971", :itunes_country=>"de" } )
 App.create( { :name=>"weltbild", :android_id=>"de.weltbild.android.ebookreader", :itunes_id=>"435921458", :itunes_country=>"de" } )
 App.create({ :name=>"iBooks", :itunes_id=>"364709193", :itunes_country=>"us" })
-App.create( {:name=>"ciando", :android_id=>"com.ciando.ciandoreader", :itunes_id="518274502", :itunes_country=>"de" })
+App.create( {:name=>"ciando", :android_id=>"com.ciando.ciandoreader", :itunes_id=>"518274502", :itunes_country=>"de" })
 
