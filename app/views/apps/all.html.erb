@@ -1,7 +1,9 @@
 <% options = '{\"duration\":{"multiplier\":1,\"timeUnit\":\"D\"},\"yLambda\":1,\"nonSelectedAlpha\":0.4,\"playDuration\":15000,\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"uniColorForNonSelected\":false,\"orderedByX\":false,\"iconKeySettings\":[],\"yZoomedIn\":false,\"colorOption\":\"_UNIQUE_COLOR\",\"xAxisOption\":\"2\",\"yZoomedDataMax\":5,\"xZoomedDataMin\":1,\"orderedByY\":false,\"xLambda\":1,\"iconType\":\"BUBBLE\",\"showTrails\":true,\"yZoomedDataMin\":1,\"yAxisOption\":\"3\",\"xZoomedIn\":false,\"xZoomedDataMax\":5,\"sizeOption\":\"4\"}'
 %>
 
-<% visualization "all", "MotionChart", "width" => 800, "height" => 600, :state=>options, :html => {:class => "graph_chart"} do |chart| %>
+<div class="content">
+<div id="middle-element">
+<% visualization "all", "MotionChart", "width" => 780, "height" => 600, :state=>options, :html => {:class => "graph_chart"} do |chart| %>
 
     <%# Add the columns that the graph will have %>
     <% chart.string "App" %>
@@ -18,7 +20,5 @@
 		chart.add_row(["#{r.app.name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.itunes_rating_nice, r.android_rating_nice, r.base]) 
 	end	%>
 <% end %>
-
-<%= link_to "Android", :controller => "apps", :action => "android" %>
-<%= link_to "iTunes", :controller => "apps", :action => "itunes" %>
-<%= link_to "both", :controller => "apps", :action => "all" %>
+</div>
+</div>

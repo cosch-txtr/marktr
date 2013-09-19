@@ -5,7 +5,7 @@ module Rating
   end
 
   def rating_nice
-  	(sprintf "%.2f", rating).to_f
+  	(sprintf "%.2f", rating).to_f if rating
   end
 end
  

@@ -2,7 +2,9 @@
 <% options = '{\"yLambda\":1,\"yZoomedIn\":false,\"showTrails\":true,\"duration\":{\"multiplier\":1,\"timeUnit\":\"D\"},\"yAxisOption\":\"3\",\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedDataMin\":1,\"colorOption\":\"_UNIQUE_COLOR\",\"playDuration\":15000,\"xAxisOption\":\"2\",\"orderedByX\":false,\"yZoomedDataMax\":397.6329966187414,\"xLambda\":1,\"nonSelectedAlpha\":0.4,\"iconType\":\"BUBBLE\",\"uniColorForNonSelected\":false,\"orderedByY\":false,\"iconKeySettings\":[],\"yZoomedDataMin\":1,\"xZoomedIn\":false,\"xZoomedDataMax\":5,\"sizeOption\":\"3\"}'
 %>
 
-<% visualization "android", "MotionChart", :width => 800, :height => 600, :state=>options, :html => {:class => "graph_chart"} do |chart| %>
+<div class="content">
+<div id="middle-element">
+<% visualization "android", "MotionChart", :width => 780, :height => 600, :state=>options, :html => {:class => "graph_chart"} do |chart| %>
     <%# Add the columns that the graph will have %>
     <% chart.string "App" %>
     <% chart.date "Date" %>
@@ -17,8 +19,6 @@
 		<% chart.add_row(["#{r.app.name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.rating_nice, r.base]) %>
 	<% end	%>
 <% end %>
-
-<%= link_to "Android", :controller => "apps", :action => "android" %>
-<%= link_to "iTunes", :controller => "apps", :action => "itunes" %>
-<%= link_to "both", :controller => "apps", :action => "all" %>
+</div>
+</div>
 			

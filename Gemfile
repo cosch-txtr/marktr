@@ -55,3 +55,6 @@ gem "itunes-search-api"
 
 # google visualisation
 gem 'gvis', '>= 2.0.0'
+
+#tab navi
+gem "tabs_on_rails"

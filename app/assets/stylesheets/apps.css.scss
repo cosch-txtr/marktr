@@ -1,3 +1,68 @@
 // Place all the styles related to the apps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// first we set the variables:
+$BGCOLOR: #0099CC;
+$HLCOLOR: #3399FF;
+
+.boxtab {
+	background-color:$BGCOLOR;
+	width: 800px;
+	height: 650px;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index:-1;
+}
+
+.tabarea {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+	display:inline;
+	a:link,a:visited
+	{
+		font-weight:bold;
+		color:#FFFFFF;
+		background-color:$BGCOLOR;
+		text-align:center;
+		padding:6px;
+		text-decoration:none;
+		text-transform:uppercase;
+	}
+	a:hover,a:active
+	{
+		background-color:$HLCOLOR;
+	}
+}
+
+.current {
+	background-color:WHITE;
+	font-weight:bold;
+	color:BLACK;
+	text-align:center;
+	padding:6px;
+	text-decoration:none;
+	text-transform:uppercase;
+}
+
+.content {
+ margin:0;
+ padding:0;
+ background-color: $BGCOLOR; 
+ position: absolute;
+ left: 0px;
+ top: 50px;
+ width: 800px;
+ height: 600px;
+}
+
+#middle-element {
+  margin:0;
+  padding:0;	
+  text-align: center;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
