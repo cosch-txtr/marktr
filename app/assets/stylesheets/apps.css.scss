@@ -6,14 +6,9 @@
 $BGCOLOR: #0099CC;
 $HLCOLOR: #3399FF;
 
-.boxtab {
-	background-color:$BGCOLOR;
-	width: 800px;
-	height: 650px;
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	z-index:-1;
+#wrap { 
+	width: 900px; 
+	margin: 0 auto; 
 }
 
 .tabarea {
@@ -51,18 +46,19 @@ $HLCOLOR: #3399FF;
  margin:0;
  padding:0;
  background-color: $BGCOLOR; 
- position: absolute;
+ position: relative;
  left: 0px;
- top: 50px;
+ top: -50px;
  width: 800px;
- height: 600px;
+ height: 650px;
+ z-index:-1;
 }
 
 #middle-element {
   margin:0;
   padding:0;	
   text-align: center;
-  position: absolute;
-  left: 10px;
-  top: -10px;
+  position: relative;
+  left: 0px;
+  top: 40px;
 }

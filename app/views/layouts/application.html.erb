@@ -10,8 +10,7 @@
 </head>
 <body>
 
-<div class="boxtab">
-</div>
+<div id="wrap">
 <%= tabs_tag do |tab| %>
   <%= tab.all      'All', root_path, :class => 'tabarea' %>
   <%= tab.android 'Android', "/android", :class => 'tabarea'  %>
@@ -19,7 +18,7 @@
 <% end %>	
 
 <%= yield %>
-
+</div>
 
 </body>
 </html>
