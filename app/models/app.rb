@@ -2,6 +2,7 @@ class App < ActiveRecord::Base
 	validates :name, presence: true
 	has_many :android_ratings
 	has_many :itunes_ratings
+	has_many :win8_ratings
 	has_many :joined_ratings
 
 	def self.android_itunes
@@ -16,4 +17,7 @@ class App < ActiveRecord::Base
 		where("itunes_id not NULL").load
 	end
 
+	def self.win8
+		where("win8_id not NULL").load
+	end
 end
