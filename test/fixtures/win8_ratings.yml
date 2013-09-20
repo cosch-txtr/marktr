@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  win8_id: MyString
+  rating: 9.99
+  votes: 1
+  app_id: 
+
+two:
+  win8_id: MyString
+  rating: 9.99
+  votes: 1
+  app_id: 
