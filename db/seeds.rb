@@ -15,12 +15,12 @@ App.create( { :name=>"kobo", :android_id=>"com.kobobooks.android",
 			  :win8_id=>"kobo/05e8583d-b242-43be-8dcf-c8a9c49d8ee3", :win8_country=>"en-us" } )
 
 App.create( { :name=>"nook", :android_id=>"bn.ereader", 
-			  :itunes_id=>"373582546", :itunes_country=>"us",
-			  :win8_id=>"nook-books-magazines-newspapers/05dbbb07-cd42-4a5f-9cd3-a329d52bd372", :win8_country=>"en-us" })                                                                               } )                                                                               
+			  :itunes_id=>"373582546", :itunes_country=>"us" ,
+			  :win8_id=>"nook-books-magazines-newspapers/05dbbb07-cd42-4a5f-9cd3-a329d52bd372", :win8_country=>"en-us" } )                                                                               
 
 App.create( { :name=>"kindle", :android_id=>"com.amazon.kindle", 
 			  :itunes_id=>"302584613", :itunes_country=>"us",    
-			  :win8_id=>"kindle/1d7e4396-0143-4aed-8892-84eb75e799f3", :win8_country=>"en-us" })                                                                              
+			  :win8_id=>"kindle/1d7e4396-0143-4aed-8892-84eb75e799f3", :win8_country=>"en-us" } )                                                                              
 
 App.create( { :name=>"playbooks", :android_id=>"com.google.android.apps.books", 
 			  :itunes_id=>"400989007", :itunes_country=>"us" } )                                                                  
@@ -40,4 +40,4 @@ App.create( { :name=>"weltbild", :android_id=>"de.weltbild.android.ebookreader",
 App.create( { :name=>"ciando", :android_id=>"com.ciando.ciandoreader", 
 	 		  :itunes_id=>"518274502", :itunes_country=>"de" })
 
-App.create( { :name=>"iBooks", :itunes_id=>"364709193", :itunes_country=>"us" })
+App.create( { :name=>"iBooks", :itunes_id=>"364709193", :itunes_country=>"us" } )

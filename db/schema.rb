@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20130920155145) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "itunes_country"
-    t.string   "win8_county"
+    t.string   "win8_country"
   end
 
   create_table "itunes_ratings", force: true do |t|
