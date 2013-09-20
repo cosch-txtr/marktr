@@ -1,7 +1,6 @@
 <% options = '{\"duration\":{"multiplier\":1,\"timeUnit\":\"D\"},\"yLambda\":1,\"nonSelectedAlpha\":0.4,\"playDuration\":15000,\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"uniColorForNonSelected\":false,\"orderedByX\":false,\"iconKeySettings\":[],\"yZoomedIn\":false,\"colorOption\":\"_UNIQUE_COLOR\",\"xAxisOption\":\"2\",\"yZoomedDataMax\":5,\"xZoomedDataMin\":1,\"orderedByY\":false,\"xLambda\":1,\"iconType\":\"BUBBLE\",\"showTrails\":true,\"yZoomedDataMin\":1,\"yAxisOption\":\"3\",\"xZoomedIn\":false,\"xZoomedDataMax\":5,\"sizeOption\":\"4\"}'
 %>
 
-<div class="content">
 <div id="middle-element">
 <% visualization "all", "MotionChart", "width" => 780, "height" => 600, :state=>options, :html => {:class => "graph_chart"} do |chart| %>
 
@@ -21,4 +20,4 @@
 	end	%>
 <% end %>
 </div>
-</div>
+

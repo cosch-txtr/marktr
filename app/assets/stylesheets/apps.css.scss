@@ -42,7 +42,7 @@ $HLCOLOR: #3399FF;
 	text-transform:uppercase;
 }
 
-.content {
+p {
  margin:0;
  padding:0;
  background-color: $BGCOLOR; 
@@ -61,6 +61,6 @@ $HLCOLOR: #3399FF;
   padding:0;	
   text-align: center;
   position: relative;
-  left: 0px;
-  top: 39px;
+  left: -50px;
+  top: -660px;
 }
