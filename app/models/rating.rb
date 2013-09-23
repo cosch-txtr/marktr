@@ -9,7 +9,7 @@ module Rating
   end
 
   def is_valid?
-  	(votes && rating)
+  	(votes!=nil && rating!=nil)
   end
 end
  

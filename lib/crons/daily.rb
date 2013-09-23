@@ -12,17 +12,20 @@ def store_android_ratings
   
   App.android.each do |app|    
       begin
-        next if( app.android_today)
+        next if( app.android_today!=nil && app.android_today.is_valid?)
+
         puts "searching for:#{app.name}:#{app.android_id}"
         m_app = MarketBot::Android::App.new(app.android_id)
         m_app.update
         puts "\t(#{m_app.title}) price: #{m_app.price} rating: #{m_app.rating} <- #{m_app.votes}"
         
-        r = app.android_ratings.create( {
-          :android_id=>app.android_id,
-          :rating=>m_app.rating,
-          :votes=>m_app.votes
-          })
+        r = (!app.android_today) ? app.android_ratings.create() : app.android_today
+        
+        r.android_id=app.android_id
+        r.rating=m_app.rating
+        r.votes=m_app.votes
+        r.save!
+
         @androids["#{app.id}"]=r;
       rescue Exception=>e
         puts e.message  
@@ -37,7 +40,8 @@ def store_itunes_ratings
   
   App.itunes.each do |app|    
       begin
-        next if( app.itunes_today)
+        next if( app.itunes_today!=nil && app.itunes_today.is_valid?)
+
         puts "searching for:#{app.name}:#{app.itunes_id}"
         res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => app.itunes_country)
         if !res
@@ -46,11 +50,13 @@ def store_itunes_ratings
         end
         puts "\t(#{res["trackName"]}) price: #{res["price"]} rating: #{res["averageUserRating"]} <- #{res["userRatingCount"]}"
         
-        r = app.itunes_ratings.create( {
-          :itunes_id=>app.itunes_id,
-          :rating=>res["averageUserRating"],
-          :votes=>res["userRatingCount"]
-          })
+        r = (!app.itunes_today) ? app.itunes_ratings.create() : app.itunes_today
+
+        r.itunes_id=app.itunes_id
+        r.rating=res["averageUserRating"]
+        r.votes=res["userRatingCount"]
+        r.save!
+
         @itunes["#{app.id}"]=r;
       rescue Exception=>e
         puts e.message  
@@ -66,16 +72,19 @@ def store_win8_ratings
   
   App.win8.each do |app|    
       begin
-        next if( app.win8_today)
+        next if( app.win8_today!=nil && app.win8_today.is_valid? )
+
         puts "searching for:#{app.name}:#{app.win8_id}"
         win=WinLoader.load(app)
         puts "\t(#{app.name}) rating: #{win[:rating]} <- #{win[:count]}"
         
-        r = app.win8_ratings.create( {
-          :win8_id=>app.win8_id,
-          :rating=>win[:rating],
-          :votes=>win[:count]
-          })
+        r = (!app.win8_today) ? app.win8_ratings.create() : app.win8_today
+
+        r.win8_id=app.win8_id
+        r.rating=win[:rating]
+        r.votes=win[:count]
+        r.save!
+
         @win8s["#{app.id}"]=r;
       rescue Exception=>e
         puts e.message  
@@ -90,25 +99,33 @@ def store_joined_ratings
   
   App.joined.each do |app|    
     begin
-      next if( app.joined_today)
+      next if( app.joined_today!=nil && app.joined_today.is_valid?)
+
       puts "searching for:#{app.name}"
       a = @androids["#{app.id}"]
       i = @itunes["#{app.id}"]
       w = @win8s["#{app.id}"]
       if (a && i)
-        j=app.joined_ratings.create({
-          :itunes_id=>i.itunes_id,
-          :itunes_rating=>i.rating,
-          :itunes_votes=>i.votes,
-          :android_id=>a.android_id,
-          :android_rating=>a.rating,
-          :android_votes=>a.votes
-          })
+
+        j = (!app.joined_today) ? app.joined_ratings.create() : app.joined_today
+
+        j.itunes_id=i.itunes_id
+        j.itunes_rating=i.rating
+        j.itunes_votes=i.votes
+        j.android_id=a.android_id
+        j.android_rating=a.rating
+        j.android_votes=a.votes
+        
         if( w )
           j.win8_rating = w.rating
           j.win8_votes = w.votes
-          j.save!
+        else
+          j.win8_rating = "0.0"
+          j.win8_votes = 0
         end
+
+        j.save!
+        
         puts "  created joind rating"
       else
         puts "  can not find ios and android"
