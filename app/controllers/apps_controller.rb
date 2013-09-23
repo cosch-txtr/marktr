@@ -23,4 +23,12 @@ class AppsController < ApplicationController
 			@ratings += app.itunes_ratings
 		end
 	end
+
+	def win8
+		set_tab :win8
+		@ratings = []
+		App.win8.each do |app|
+			@ratings += app.win8_ratings
+		end
+	end
 end

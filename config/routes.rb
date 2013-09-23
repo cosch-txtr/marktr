@@ -8,6 +8,7 @@ Marktr::Application.routes.draw do
   get 'android' => 'apps#android'
   get 'ios' => 'apps#itunes'
   get 'itunes' => 'apps#itunes'
+  get 'win8' => 'apps#win8'
   get 'all' => 'apps#all'
 
   # Example of regular route:
