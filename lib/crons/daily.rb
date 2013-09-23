@@ -12,6 +12,7 @@ def store_android_ratings
   
   App.android.each do |app|    
       begin
+        next if( app.android_today)
         puts "searching for:#{app.name}:#{app.android_id}"
         m_app = MarketBot::Android::App.new(app.android_id)
         m_app.update
@@ -36,6 +37,7 @@ def store_itunes_ratings
   
   App.itunes.each do |app|    
       begin
+        next if( app.itunes_today)
         puts "searching for:#{app.name}:#{app.itunes_id}"
         res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => app.itunes_country)
         if !res
@@ -64,6 +66,7 @@ def store_win8_ratings
   
   App.win8.each do |app|    
       begin
+        next if( app.win8_today)
         puts "searching for:#{app.name}:#{app.win8_id}"
         win=WinLoader.load(app)
         puts "\t(#{app.name}) rating: #{win[:rating]} <- #{win[:count]}"
@@ -85,8 +88,9 @@ end
 def store_joined_ratings
   puts "store_joined_ratings: in"
   
-  App.android_itunes.each do |app|    
+  App.joined.each do |app|    
     begin
+      next if( app.joined_today)
       puts "searching for:#{app.name}"
       a = @androids["#{app.id}"]
       i = @itunes["#{app.id}"]

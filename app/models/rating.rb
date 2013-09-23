@@ -7,5 +7,9 @@ module Rating
   def rating_nice
   	(sprintf "%.2f", rating).to_f if rating
   end
+
+  def is_valid?
+  	(votes && rating)
+  end
 end
  
