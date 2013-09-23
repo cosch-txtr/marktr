@@ -82,7 +82,7 @@ def store_win8_ratings
           @win8s["#{app.id}"]=app.win8_today;
           next
         end
-        
+
         puts "searching for:#{app.name}:#{app.win8_id}"
         win=WinLoader.load(app)
         puts "\t(#{app.name}) rating: #{win[:rating]} <- #{win[:count]}"
@@ -148,10 +148,37 @@ def store_joined_ratings
   puts "store_joined_ratings: out"
 end
 
+def ensure_one js
+  while js.count>1
+    js.delete(js.last)
+  end
+end
+
+def ensure_only_one_per_day
+  puts "ensure_one_per_day in"
+
+  App.all.each do |app|
+    j=app.joined_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+    ensure_one(j)
+
+    a=app.android_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+    ensure_one(a)
+    
+    i=app.itunes_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+    ensure_one(i)
+    
+    w=app.win8_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+    ensure_one(w)    
+  end
+
+  puts "ensure_only_one_per_day out"
+end
+
 store_android_ratings
 store_itunes_ratings
 store_win8_ratings
 store_joined_ratings
+ensure_only_one_per_day
 
 puts "daily workers done...."
 
