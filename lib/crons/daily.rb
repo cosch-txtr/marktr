@@ -12,7 +12,10 @@ def store_android_ratings
   
   App.android.each do |app|    
       begin
-        next if( app.android_today!=nil && app.android_today.is_valid?)
+        if( app.android_today!=nil && app.android_today.is_valid?)
+          @androids["#{app.id}"]=app.android_today;
+          next
+        end
 
         puts "searching for:#{app.name}:#{app.android_id}"
         m_app = MarketBot::Android::App.new(app.android_id)
@@ -40,7 +43,10 @@ def store_itunes_ratings
   
   App.itunes.each do |app|    
       begin
-        next if( app.itunes_today!=nil && app.itunes_today.is_valid?)
+        if( app.itunes_today!=nil && app.itunes_today.is_valid?)
+          @itunes["#{app.id}"]=app.itunes_today;
+          next
+        end
 
         puts "searching for:#{app.name}:#{app.itunes_id}"
         res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => app.itunes_country)
@@ -72,8 +78,11 @@ def store_win8_ratings
   
   App.win8.each do |app|    
       begin
-        next if( app.win8_today!=nil && app.win8_today.is_valid? )
-
+        if( app.win8_today!=nil && app.win8_today.is_valid? )
+          @win8s["#{app.id}"]=app.win8_today;
+          next
+        end
+        
         puts "searching for:#{app.name}:#{app.win8_id}"
         win=WinLoader.load(app)
         puts "\t(#{app.name}) rating: #{win[:rating]} <- #{win[:count]}"
