@@ -17,11 +17,12 @@ private
 
 	def self.win8_load(uri)
 		doc= Nokogiri::HTML(open(uri))
-	  node = doc.xpath("//meta[@itemprop='ratingValue']").first
-	  rating = node[:content].strip rescue 'Free'
-	
+	  	node = doc.xpath("//meta[@itemprop='ratingValue']").first
+	  	rating = node[:content].strip rescue '0'
+	  	rating=rating.gsub(/,/,".")
+		
 		node = doc.xpath("//meta[@itemprop='ratingCount']").first
-		count = node[:content].strip rescue 'Free'
+		count = node[:content].strip rescue '0'
 		{ :rating=>rating, :count=>count }
 	end
 
