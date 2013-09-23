@@ -41,3 +41,24 @@ App.create( { :name=>"ciando", :android_id=>"com.ciando.ciandoreader",
 	 		  :itunes_id=>"518274502", :itunes_country=>"de" })
 
 App.create( { :name=>"iBooks", :itunes_id=>"364709193", :itunes_country=>"us" } )
+
+
+a=App.find_by_name "txtr"
+a.win8_id="txtr-reader/1e3b5a45-302f-4e99-a4d3-9a2371c2a395" if !a.win8_id
+a.win8_country="de-de" if !a.win8_country
+a.save!
+
+a=App.find_by_name "kobo"
+a.win8_id="kobo/05e8583d-b242-43be-8dcf-c8a9c49d8ee3" if !a.win8_id
+a.win8_country="en-us" if !a.win8_country
+a.save!
+
+a=App.find_by_name "nook"
+a.win8_id="nook-books-magazines-newspapers/05dbbb07-cd42-4a5f-9cd3-a329d52bd372" if !a.win8_id
+a.win8_country="en-us" if !a.win8_country
+a.save!
+
+a=App.find_by_name "kindle"
+a.win8_id="kindle/1d7e4396-0143-4aed-8892-84eb75e799f3" if !a.win8_id
+a.win8_country="en-us" if !a.win8_country
+a.save!
