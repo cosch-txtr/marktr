@@ -22,4 +22,4 @@ module Marktr
   end
 end
 
-require "./lib/win_loader" 
+require "#{Rails.root}/lib/win_loader" 

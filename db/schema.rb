@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130920155145) do
+ActiveRecord::Schema.define(version: 20130923091951) do
 
   create_table "android_ratings", force: true do |t|
     t.string   "android_id"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20130920155145) do
     t.integer  "app_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "win8_rating",    precision: 7, scale: 2
+    t.integer  "win8_votes"
   end
 
   add_index "joined_ratings", ["app_id"], name: "index_joined_ratings_on_app_id"
