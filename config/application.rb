@@ -21,3 +21,5 @@ module Marktr
     # config.i18n.default_locale = :de
   end
 end
+
+require "./lib/win_loader" 
