@@ -46,6 +46,10 @@ App.create( { :name=>"3M Cloud Library", :android_id=>"com.txtr.android.mmm",
 App.create( { :name=>"Foyles", :android_id=>"com.txtr.android.foyles", 
 	 		  :itunes_id=>"498928265", :itunes_country=>"us" }) if !App.find_by_name "Foyles"
 
+App.create( { :name=>"Planet9", :android_id=>"com.txtr.android.tcom"#, 
+	 		  #:itunes_id=>"447344289", :itunes_country=>"us" }
+	 		  ) if !App.find_by_name "Planet9"
+
 App.create( { :name=>"iBooks", :itunes_id=>"364709193", :itunes_country=>"us" } ) if !App.find_by_name "iBooks"
 
 
