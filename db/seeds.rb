@@ -43,6 +43,9 @@ App.create( { :name=>"ciando", :android_id=>"com.ciando.ciandoreader",
 App.create( { :name=>"3M Cloud Library", :android_id=>"com.txtr.android.mmm", 
 	 		  :itunes_id=>"466446054", :itunes_country=>"us" }) if !App.find_by_name "3M Cloud Library"
 
+App.create( { :name=>"Foyles", :android_id=>"com.txtr.android.foyles", 
+	 		  :itunes_id=>"498928265", :itunes_country=>"us" }) if !App.find_by_name "Foyles"
+
 App.create( { :name=>"iBooks", :itunes_id=>"364709193", :itunes_country=>"us" } ) if !App.find_by_name "iBooks"
 
 
