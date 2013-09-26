@@ -23,19 +23,21 @@ RAILS_ENV=ENV['RAILS_ENV'] || 'production'
 RAILS_ROOT= File.expand_path(File.join(File.dirname(__FILE__),"..")) 
 
 RBENV="export RBENV_ROOT=~/.rbenv && export PATH=\"$RBENV_ROOT/bin:$PATH\" && eval \"$(rbenv init -)\" && export RAILS_ENV=#{RAILS_ENV} && "
+RVM="[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && source \"$HOME/.rvm/scripts/rvm\" && "
+ENVIRONMENT=RBENV
 
 set :output, "#{RAILS_ROOT}/log/#{RAILS_ENV}.bg.log"
 set :job_template, "/bin/bash -l -c ':job'"
 
 every 1.day, :at => '8:30am' do
-  command "#{RBENV} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/daily.rb"  
+  command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/daily.rb"  
 end
 
 every 1.hours do
-  command "#{RBENV} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/hourly.rb"
+  command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/hourly.rb"
 end
 
 every 5.minutes do
-  command "#{RBENV} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/5minutes.rb"
+  command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/5minutes.rb"
 end
 
