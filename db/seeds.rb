@@ -40,6 +40,9 @@ App.create( { :name=>"weltbild", :android_id=>"de.weltbild.android.ebookreader",
 App.create( { :name=>"ciando", :android_id=>"com.ciando.ciandoreader", 
 	 		  :itunes_id=>"518274502", :itunes_country=>"de" }) if !App.find_by_name "ciando"
 
+App.create( { :name=>"3M Cloud Library", :android_id=>"com.txtr.android.mmm", 
+	 		  :itunes_id=>"466446054", :itunes_country=>"us" }) if !App.find_by_name "3M Cloud Library"
+
 App.create( { :name=>"iBooks", :itunes_id=>"364709193", :itunes_country=>"us" } ) if !App.find_by_name "iBooks"
 
 
