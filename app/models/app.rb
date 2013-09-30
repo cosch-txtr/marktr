@@ -5,7 +5,22 @@ class App < ActiveRecord::Base
 	has_many :win8_ratings
 	has_many :joined_ratings
 
+	def default_country
+		Country.find_by_id country_id
+	end
+
+	def itunes_country
+		default_country.itunes_country
+	end
 	
+	def win8_country
+		default_country.win8_country
+	end
+
+	def android_country
+		default_country.android_country
+	end
+
 	def self.joined
 		where("android_id not NULL AND itunes_id not NULL").load
 	end
