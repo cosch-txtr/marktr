@@ -27,6 +27,7 @@ def store_android_ratings
         r.android_id=app.android_id
         r.rating=m_app.rating
         r.votes=m_app.votes
+        r.country_id=app.default_country.id
         r.save!
 
         @androids["#{app.id}"]=r;
@@ -60,7 +61,11 @@ def store_itunes_ratings
           next
         end
         puts "\t(#{res["trackName"]}) price: #{res["price"]} rating: #{res["averageUserRating"]} <- #{res["userRatingCount"]}"
-        
+        if !res["averageUserRating"] || !res["userRatingCount"] 
+          puts "\t next due to invalid rating and votes"
+          next
+        end
+
         r = (!itunes) ? app.itunes_ratings.create() : itunes
 
         r.itunes_id=app.itunes_id
@@ -98,6 +103,11 @@ def store_win8_ratings
         win=WinLoader.load(app, country.win8_country)
         puts "\t(#{app.name}) rating: #{win[:rating]} <- #{win[:count]}"
         
+        if win[:rating]==0.0 || win[:count]==0.0 
+          puts "\t next due to invalid rating and votes"
+          next
+        end
+
         r = (!win8) ? app.win8_ratings.create() : win8
 
         r.win8_id=app.win8_id
