@@ -3,14 +3,14 @@ require 'open-uri'
 
 class WinLoader
 
-	def self.load(a)
-		self.win8_load(self.win8_uri_for(a))
+	def self.load(a,c)
+		self.win8_load(self.win8_uri_for(a,c))
 	end
 
 private 
-	def self.win8_uri_for(app)
+	def self.win8_uri_for(app,country)
 		u="http://apps.microsoft.com/windows/"
-		u+=app.win8_country
+		u+=country
 		u+="/app/"
 		u+=app.win8_id
 	end

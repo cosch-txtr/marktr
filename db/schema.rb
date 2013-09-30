@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930092138) do
+ActiveRecord::Schema.define(version: 20130930124546) do
 
   create_table "android_ratings", force: true do |t|
     t.string   "android_id"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20130930092138) do
     t.integer  "app_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
   end
 
   add_index "android_ratings", ["app_id"], name: "index_android_ratings_on_app_id"
@@ -52,6 +53,7 @@ ActiveRecord::Schema.define(version: 20130930092138) do
     t.integer  "app_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
   end
 
   add_index "itunes_ratings", ["app_id"], name: "index_itunes_ratings_on_app_id"
@@ -68,6 +70,7 @@ ActiveRecord::Schema.define(version: 20130930092138) do
     t.datetime "updated_at"
     t.decimal  "win8_rating",    precision: 7, scale: 2
     t.integer  "win8_votes"
+    t.integer  "country_id"
   end
 
   add_index "joined_ratings", ["app_id"], name: "index_joined_ratings_on_app_id"
@@ -79,6 +82,7 @@ ActiveRecord::Schema.define(version: 20130930092138) do
     t.integer  "app_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "country_id"
   end
 
   add_index "win8_ratings", ["app_id"], name: "index_win8_ratings_on_app_id"

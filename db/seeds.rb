@@ -174,3 +174,23 @@ else
 end
 
 #########################################################################################
+
+ItunesRating.all.each do |r|
+	r.country_id=r.app.default_country.id if !r.country_id
+	r.save!
+end
+
+Win8Rating.all.each do |r|
+	r.country_id=r.app.default_country.id if !r.country_id
+	r.save!
+end
+
+AndroidRating.all.each do |r|
+	r.country_id=r.app.default_country.id if !r.country_id
+	r.save!
+end
+
+JoinedRating.all.each do |r|
+	r.country_id=r.app.default_country.id if !r.country_id
+	r.save!
+end

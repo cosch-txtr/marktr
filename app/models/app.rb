@@ -21,6 +21,8 @@ class App < ActiveRecord::Base
 		default_country.android_country
 	end
 
+
+
 	def self.joined
 		where("android_id not NULL AND itunes_id not NULL").load
 	end
@@ -39,26 +41,26 @@ class App < ActiveRecord::Base
 
 
 	
-	def joined_today
-		j=joined_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+	def joined_today( country=default_country )
+		j=joined_ratings.where("created_at between ? and ? and country_id = ?", Date.today, Date.today.next_day, country.id)
 		return j[0] if j.count>0
 		nil
 	end
 	
-	def android_today
-		a=android_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+	def android_today( country=default_country )
+		a=android_ratings.where("created_at between ? and ? and country_id = ?", Date.today, Date.today.next_day, country.id)
 		return a[0] if a.count>0
 		nil
 	end
 	
-	def itunes_today
-		i=itunes_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+	def itunes_today( country=default_country )
+		i=itunes_ratings.where("created_at between ? and ? and country_id = ?", Date.today, Date.today.next_day, country.id)
 		return i[0] if i.count>0
 		nil
 	end
 
-	def win8_today
-		w = win8_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+	def win8_today( country=default_country )
+		w = win8_ratings.where("created_at between ? and ? and country_id = ?", Date.today, Date.today.next_day, country.id)
 		return w[0] if w.count>0
 		nil
 	end

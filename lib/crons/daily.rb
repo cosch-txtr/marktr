@@ -38,115 +38,136 @@ def store_android_ratings
   puts "store_android_ratings: out"
 end
 
+
+
+
 def store_itunes_ratings
   puts "store_itunes_ratings: in"
   
   App.itunes.each do |app|    
+    Country.all.each do | country |
       begin
-        if( app.itunes_today!=nil && app.itunes_today.is_valid?)
-          @itunes["#{app.id}"]=app.itunes_today;
+        itunes = app.itunes_today(country)
+        if( itunes!=nil && itunes.is_valid?)
+          @itunes["#{app.id}"]=itunes if itunes.country_id==app.default_country.id
           next
         end
 
-        puts "searching for:#{app.name}:#{app.itunes_id}"
-        res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => app.itunes_country)
+        puts "searching for:#{app.name}:#{app.itunes_id}:#{country.itunes_country}"
+        res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => country.itunes_country)
         if !res
-          puts "  fallback to US store ... "
-          res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => "us") 
+          puts "  not available in itunes - next"
+          next
         end
         puts "\t(#{res["trackName"]}) price: #{res["price"]} rating: #{res["averageUserRating"]} <- #{res["userRatingCount"]}"
         
-        r = (!app.itunes_today) ? app.itunes_ratings.create() : app.itunes_today
+        r = (!itunes) ? app.itunes_ratings.create() : itunes
 
         r.itunes_id=app.itunes_id
         r.rating=res["averageUserRating"]
         r.votes=res["userRatingCount"]
+        r.country_id=country.id
         r.save!
 
-        @itunes["#{app.id}"]=r;
+        @itunes["#{app.id}"]=r if r.country_id==app.default_country.id
       rescue Exception=>e
         puts e.message  
         puts e.backtrace.inspect 
       end
+    end
   end
 
   puts "store_itunes_ratings: out"
 end
 
+
+
 def store_win8_ratings
   puts "store_win8_ratings: in"
   
   App.win8.each do |app|    
+    Country.all.each do |country|
       begin
-        if( app.win8_today!=nil && app.win8_today.is_valid? )
-          @win8s["#{app.id}"]=app.win8_today;
+        win8 = app.win8_today(country)
+        if( win8!=nil && win8.is_valid? )
+          @win8s["#{app.id}"]=app.win8_today if win8.country_id==app.default_country.id
           next
         end
 
-        puts "searching for:#{app.name}:#{app.win8_id}"
-        win=WinLoader.load(app)
+        puts "searching for:#{app.name}:#{app.win8_id}:#{country.win8_country}"
+        win=WinLoader.load(app, country.win8_country)
         puts "\t(#{app.name}) rating: #{win[:rating]} <- #{win[:count]}"
         
-        r = (!app.win8_today) ? app.win8_ratings.create() : app.win8_today
+        r = (!win8) ? app.win8_ratings.create() : win8
 
         r.win8_id=app.win8_id
         r.rating=win[:rating]
         r.votes=win[:count]
+        r.country_id=country.id
         r.save!
 
-        @win8s["#{app.id}"]=r;
+        @win8s["#{app.id}"]=r if r.country_id==app.default_country.id
       rescue Exception=>e
         puts e.message  
         puts e.backtrace.inspect 
       end
+    end
   end
   puts "store_win8_ratings: out"
 end
 
+
+
 def store_joined_ratings
   puts "store_joined_ratings: in"
   
-  App.joined.each do |app|    
-    begin
-      next if( app.joined_today!=nil && app.joined_today.is_valid?)
+  App.joined.each do |app|   
+    Country.all.each do |country| 
+      begin
+        joined = app.joined_today
+        next if( joined!=nil && joined.is_valid?)
 
-      puts "searching for:#{app.name}"
-      a = @androids["#{app.id}"]
-      i = @itunes["#{app.id}"]
-      w = @win8s["#{app.id}"]
-      if (a && i)
+        puts "searching for:#{app.name}:#{country.itunes_country}"
+        a = @androids["#{app.id}"]
+        i = @itunes["#{app.id}"]
+        w = @win8s["#{app.id}"]
+        if (a && i)
 
-        j = (!app.joined_today) ? app.joined_ratings.create() : app.joined_today
+          j = (!joined) ? app.joined_ratings.create() : joined
 
-        j.itunes_id=i.itunes_id
-        j.itunes_rating=i.rating
-        j.itunes_votes=i.votes
-        j.android_id=a.android_id
-        j.android_rating=a.rating
-        j.android_votes=a.votes
-        
-        if( w )
-          j.win8_rating = w.rating
-          j.win8_votes = w.votes
+          j.itunes_id=i.itunes_id
+          j.itunes_rating=i.rating
+          j.itunes_votes=i.votes
+          j.android_id=a.android_id
+          j.android_rating=a.rating
+          j.android_votes=a.votes
+          j.country_id=app.default_country.id
+
+          if( w )
+            j.win8_rating = w.rating
+            j.win8_votes = w.votes
+          else
+            j.win8_rating = "0.0"
+            j.win8_votes = 0
+          end
+
+          j.save!
+          
+          puts "  created joined rating"
         else
-          j.win8_rating = "0.0"
-          j.win8_votes = 0
+          puts "  can not find ios and android"
         end
-
-        j.save!
-        
-        puts "  created joind rating"
-      else
-        puts "  can not find ios and android"
+      rescue Exception=>e
+        puts e.message  
+        puts e.backtrace.inspect 
       end
-    rescue Exception=>e
-      puts e.message  
-      puts e.backtrace.inspect 
     end
   end
 
   puts "store_joined_ratings: out"
 end
+
+
 
 def ensure_one js
   while js.count>1
@@ -154,31 +175,33 @@ def ensure_one js
   end
 end
 
-def ensure_only_one_per_day
-  puts "ensure_only_one_per_day in"
+def ensure_only_one_per_day_and_country
+  puts "ensure_only_one_per_day_and_country in"
 
   App.all.each do |app|
-    j=app.joined_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
-    ensure_one(j)
+    Country.all.each do |country|
+      j=app.joined_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+      ensure_one(j)
 
-    a=app.android_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
-    ensure_one(a)
-    
-    i=app.itunes_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
-    ensure_one(i)
-    
-    w=app.win8_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
-    ensure_one(w)    
+      a=app.android_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
+      ensure_one(a)
+      
+      i=app.itunes_ratings.where("created_at between ? and ? and country_id = ?", Date.today, Date.today.next_day, country.id)
+      ensure_one(i)
+      
+      w=app.win8_ratings.where("created_at between ? and ? and country_id = ?", Date.today, Date.today.next_day, country.id)
+      ensure_one(w)    
+    end
   end
 
-  puts "ensure_only_one_per_day out"
+  puts "ensure_only_one_per_day_and_country out"
 end
 
 store_android_ratings
 store_itunes_ratings
 store_win8_ratings
 store_joined_ratings
-ensure_only_one_per_day
+ensure_only_one_per_day_and_country
 
 puts "daily workers done...."
 
