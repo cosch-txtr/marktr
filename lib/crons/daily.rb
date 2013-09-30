@@ -57,7 +57,7 @@ def store_itunes_ratings
         puts "searching for:#{app.name}:#{app.itunes_id}:#{country.itunes_country}"
         res = ITunesSearchAPI.lookup(:id =>app.itunes_id,:country => country.itunes_country)
         if !res
-          puts "  not available in itunes - next"
+          puts "\tnot available in itunes - next"
           next
         end
         puts "\t(#{res["trackName"]}) price: #{res["price"]} rating: #{res["averageUserRating"]} <- #{res["userRatingCount"]}"
