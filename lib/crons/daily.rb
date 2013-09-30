@@ -155,7 +155,7 @@ def ensure_one js
 end
 
 def ensure_only_one_per_day
-  puts "ensure_one_per_day in"
+  puts "ensure_only_one_per_day in"
 
   App.all.each do |app|
     j=app.joined_ratings.where("created_at between ? and ?", Date.today, Date.today.next_day)
