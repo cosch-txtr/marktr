@@ -42,18 +42,22 @@ class App < ActiveRecord::Base
 
 
 	def android_rating_country( country )
+		country = default_country if !country
 		android_ratings.where("country_id = ?", country.id)
 	end
 
 	def itunes_rating_country( country )
+		country = default_country if !country
 		itunes_ratings.where("country_id = ?", country.id)
 	end
 	
 	def joined_rating_country( country )
+		country = default_country if !country
 		joined_ratings.where("country_id = ?", country.id)
 	end
 
 	def win8_rating_country( country )
+		country = default_country if !country
 		win8_ratings.where("country_id = ?", country.id)
 	end
 

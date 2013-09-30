@@ -2,14 +2,18 @@ class AppsController < ApplicationController
 
 	def all
 		set_tab :all
+		c = set_country_from_params
+
 		@ratings = []
 		App.joined.each do |app|
-			@ratings += app.joined_rating_country( app.default_country )
+			@ratings += app.joined_rating_country( c )
 		end
 	end
 
 	def android
 		set_tab :android
+		c = set_country_from_params
+
 		@ratings = []
 		App.android.each do |app|
 			@ratings += app.android_ratings
@@ -18,17 +22,39 @@ class AppsController < ApplicationController
 
 	def itunes
 		set_tab :itunes
+		c = set_country_from_params
+
 		@ratings = []
 		App.itunes.each do |app|
-			@ratings += app.itunes_rating_country( app.default_country )
+			@ratings += app.itunes_rating_country( c )
 		end
 	end
 
 	def win8
 		set_tab :win8
+		c = set_country_from_params
+
 		@ratings = []
 		App.win8.each do |app|
-			@ratings += app.win8_rating_country( app.default_country )
+			@ratings += app.win8_rating_country( c )
 		end
+	end
+
+	def exp
+		set_tab :exp
+		c = set_country_from_params
+		
+		@ratings = []
+		App.itunes.each do |app|			
+			@ratings += app.win8_rating_country( c )
+		end
+	end
+
+private
+	def set_country_from_params
+		@country = params[:country]	
+		c = Country.find_by_name(@country)
+		@country="All" if !c
+		c
 	end
 end
