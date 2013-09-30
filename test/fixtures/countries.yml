@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  itunes_country: MyString
+  win8_country: MyString
+  android_country: MyString
+
+two:
+  name: MyString
+  itunes_country: MyString
+  win8_country: MyString
+  android_country: MyString
