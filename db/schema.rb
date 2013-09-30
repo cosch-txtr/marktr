@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130923091951) do
+ActiveRecord::Schema.define(version: 20130930090813) do
 
   create_table "android_ratings", force: true do |t|
     t.string   "android_id"
@@ -33,6 +33,15 @@ ActiveRecord::Schema.define(version: 20130923091951) do
     t.datetime "updated_at"
     t.string   "itunes_country"
     t.string   "win8_country"
+  end
+
+  create_table "countries", force: true do |t|
+    t.string   "name"
+    t.string   "itunes_country"
+    t.string   "win8_country"
+    t.string   "android_country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "itunes_ratings", force: true do |t|

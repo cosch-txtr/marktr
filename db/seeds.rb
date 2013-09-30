@@ -72,3 +72,13 @@ a=App.find_by_name "kindle"
 a.win8_id="kindle/1d7e4396-0143-4aed-8892-84eb75e799f3" if !a.win8_id
 a.win8_country="en-us" if !a.win8_country
 a.save!
+
+Country.create({ :name=>"DE",
+				 :itunes_country=>"de",
+				 :win8_country=>"de-de",
+				 :android_country=>"de"}) if !Country.find_by_name "DE"
+
+Country.create({ :name=>"US",
+				 :itunes_country=>"us",
+				 :win8_country=>"en-us",
+				 :android_country=>"us"}) if !Country.find_by_name "US"
