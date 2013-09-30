@@ -40,7 +40,25 @@ class App < ActiveRecord::Base
 	end
 
 
+
+	def android_rating_country( country )
+		android_ratings.where("country_id = ?", country.id)
+	end
+
+	def itunes_rating_country( country )
+		itunes_ratings.where("country_id = ?", country.id)
+	end
 	
+	def joined_rating_country( country )
+		joined_ratings.where("country_id = ?", country.id)
+	end
+
+	def win8_rating_country( country )
+		win8_ratings.where("country_id = ?", country.id)
+	end
+
+
+
 	def joined_today( country=default_country )
 		j=joined_ratings.where("created_at between ? and ? and country_id = ?", Date.today, Date.today.next_day, country.id)
 		return j[0] if j.count>0

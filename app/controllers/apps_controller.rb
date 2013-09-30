@@ -4,7 +4,7 @@ class AppsController < ApplicationController
 		set_tab :all
 		@ratings = []
 		App.joined.each do |app|
-			@ratings += app.joined_ratings
+			@ratings += app.joined_rating_country( app.default_country )
 		end
 	end
 
@@ -20,7 +20,7 @@ class AppsController < ApplicationController
 		set_tab :itunes
 		@ratings = []
 		App.itunes.each do |app|
-			@ratings += app.itunes_ratings
+			@ratings += app.itunes_rating_country( app.default_country )
 		end
 	end
 
@@ -28,7 +28,7 @@ class AppsController < ApplicationController
 		set_tab :win8
 		@ratings = []
 		App.win8.each do |app|
-			@ratings += app.win8_ratings
+			@ratings += app.win8_rating_country( app.default_country )
 		end
 	end
 end
