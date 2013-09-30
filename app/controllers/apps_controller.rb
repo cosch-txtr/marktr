@@ -43,10 +43,17 @@ class AppsController < ApplicationController
 	def exp
 		set_tab :exp
 		c = set_country_from_params
-		
+		@app = params[:app]
+
 		@ratings = []
-		App.itunes.each do |app|			
-			@ratings += app.win8_rating_country( c )
+		
+		if @app
+			app = App.find_by_name @app
+			@ratings += app.win8_ratings
+		else
+			App.itunes.each do |app|			
+				@ratings += app.win8_rating_country( c ) 
+			end
 		end
 	end
 

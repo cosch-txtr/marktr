@@ -1,0 +1,28 @@
+<% options = '{\"duration\":{\"multiplier\":1,\"timeUnit\":\"D\"},\"yLambda\":1,\"yZoomedIn\":false,\"playDuration\":15000,\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedIn\":false,\"iconKeySettings\":[],\"orderedByY\":false,\"colorOption\":\"_UNIQUE_COLOR\",\"uniColorForNonSelected\":false,\"yAxisOption\":\"3\",\"showTrails\":true,\"xZoomedDataMin\":2.5,\"xAxisOption\":\"2\",\"xLambda\":1,\"iconType\":\"BUBBLE\",\"yZoomedDataMax\":198.9673340023432,\"yZoomedDataMin\":4.47213595499958,\"orderedByX\":false,\"nonSelectedAlpha\":0.4,\"xZoomedDataMax\":4.5,\"sizeOption\":\"3\"}'
+%>
+
+<%=@country%>
+<%=@app%>
+<div id="middle-element">
+<% visualization "exp", "MotionChart", :width => 780, :height => 600, :state=>options, :html => {:class => "graph_chart"} do |chart| %>
+    <%# Add the columns that the graph will have %>
+    <% chart.string "App" %>
+    <% chart.date "Date" %>
+    <% chart.number "Rating" %>
+    <% chart.number "Votes" %>
+
+    <%# chart.add_row(["min", Date.today, 1, 0.1]) %>
+    <%# chart.add_row(["max", Date.today, 5, 0.1]) %>
+
+    <%# Add the data %>
+	<% @ratings.each do |r| %>
+		<% 
+			if (@app)
+				chart.add_row(["#{r.app.name+"_"+Country.find_by_id(r.country_id).name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.rating_nice, r.votes]) 
+			else				
+				chart.add_row(["#{r.app.name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.rating_nice, r.base]) 
+			end
+		%>
+	<% end	%>
+<% end %>
+</div>
