@@ -21,7 +21,10 @@ def store_android_ratings
         m_app = MarketBot::Android::App.new(app.android_id)
         m_app.update
         puts "\t(#{m_app.title}) price: #{m_app.price} rating: #{m_app.rating} <- #{m_app.votes}"
-        
+        if !m_app.rating || !m_app.votes 
+          puts "\t next due to invalid rating and votes"
+          next
+        end
         r = (!app.android_today) ? app.android_ratings.create() : app.android_today
         
         r.android_id=app.android_id
