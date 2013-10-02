@@ -1,13 +1,12 @@
 
-<% if @method=="all" %>
-	<% puts "allallallallallallallallallallallallallall" %>
+<% if @method==:all %>
 	buildChartAll();
 <% else %>
 	buildChart();
 <% end %>
 
 <% @ratings.each do |r| %>
-		<% if @method=="all" %>
+		<% if @method==:all %>
 			chartData['exp'].addRow([ "<%="#{r.app.name}"%>", new Date(<%=r.created_at.year%>,<%=r.created_at.month%>,<%=r.created_at.day%>), <%=r.itunes_rating_nice%>, <%=r.android_rating_nice%>, <%=r.base%> ]) 		
 		<% else %>
 			chartData['exp'].addRow([ "<%="#{r.app.name}"%>", new Date(<%=r.created_at.year%>,<%=r.created_at.month%>,<%=r.created_at.day%>), <%=r.rating_nice%>, <%=r.base%> ]) 		
