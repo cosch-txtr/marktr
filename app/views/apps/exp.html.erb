@@ -3,7 +3,7 @@
 
 <div id="middle-element">
 <div id="menuarea">
-<%= button_to "All", country_path(:country => "All"),  remote: true %>
+<%= button_to "All", country_path(:country => "Default"),  remote: true %>
 <%= button_to "DE", country_path(:country => "DE"),  remote: true %>
 <%= button_to "US", country_path(:country => "US"),  remote: true %>
 <%#= form_for(:country, remote: true, :url=> country_path ) do |f|%>
@@ -18,6 +18,6 @@
 <script type="text/javascript">
 $.ajax({
     type: 'POST',
-    url: '<%=country_path(:country => "All")%>'    
+    url: '<%=country_path(:country => "Default")%>'    
 });
 </script>

@@ -3,6 +3,7 @@ class AppsController < ApplicationController
 	def all
 		set_tab :all
 		c = set_country_from_params
+		@@method = __method__
 
 		@ratings = []
 		App.joined.each do |app|
@@ -13,6 +14,7 @@ class AppsController < ApplicationController
 	def android
 		set_tab :android
 		c = set_country_from_params
+		@@method = __method__
 
 		@ratings = []
 		App.android.each do |app|
@@ -23,6 +25,7 @@ class AppsController < ApplicationController
 	def itunes
 		set_tab :itunes
 		c = set_country_from_params
+		@@method = __method__
 
 		@ratings = []
 		App.itunes.each do |app|
@@ -33,6 +36,7 @@ class AppsController < ApplicationController
 	def win8
 		set_tab :win8
 		c = set_country_from_params
+		@@method = __method__
 
 		@ratings = []
 		App.win8.each do |app|
@@ -43,34 +47,26 @@ class AppsController < ApplicationController
 	def exp
 		set_tab :exp
 		c = set_country_from_params
+		@@method = __method__
+		
 		@app = params[:app]
-
+		
 		@ratings = []
 		
-		if @app
-			app = App.find_by_name @app
-			@ratings += app.win8_ratings
-		else
-			App.win8.each do |app|			
-				@ratings += app.win8_rating_country( c ) 
+		# if @app
+		# 	app = App.find_by_name @app
+		# 	@ratings += app.win8_ratings
+		# else
+			App.itunes.each do |app|			
+				@ratings += app.itunes_rating_country( c ) 
 			end
-		end
+		#end
 	end
 
 	def country
-		c = set_country_from_params
+		#c = set_country_from_params
 
-		@ratings = []
-		App.win8.each do |app|			
-			@ratings += app.win8_rating_country( c ) 
-		end
-
-
-		# respond_to do |format|
-		# 	#format.html { render html: "exp"  }
-		# 	format.js  
-		# 	#format.json { render json: @county  }
-		# end
+		self.send( @@method )
 	end
 
 private
