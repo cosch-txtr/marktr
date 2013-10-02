@@ -12,7 +12,6 @@ Marktr::Application.routes.draw do
   get 'exp' => 'apps#exp'
   get 'all' => 'apps#all'
   post 'country' => 'apps#country'
-  get 'country' => 'apps#country'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
