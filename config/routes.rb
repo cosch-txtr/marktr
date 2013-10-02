@@ -9,7 +9,10 @@ Marktr::Application.routes.draw do
   get 'ios' => 'apps#itunes'
   get 'itunes' => 'apps#itunes'
   get 'win8' => 'apps#win8'
+  get 'exp' => 'apps#exp'
   get 'all' => 'apps#all'
+  post 'country' => 'apps#country'
+  get 'country' => 'apps#country'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

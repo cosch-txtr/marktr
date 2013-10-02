@@ -51,10 +51,26 @@ class AppsController < ApplicationController
 			app = App.find_by_name @app
 			@ratings += app.win8_ratings
 		else
-			App.itunes.each do |app|			
+			App.win8.each do |app|			
 				@ratings += app.win8_rating_country( c ) 
 			end
 		end
+	end
+
+	def country
+		c = set_country_from_params
+
+		@ratings = []
+		App.win8.each do |app|			
+			@ratings += app.win8_rating_country( c ) 
+		end
+
+
+		# respond_to do |format|
+		# 	#format.html { render html: "exp"  }
+		# 	format.js  
+		# 	#format.json { render json: @county  }
+		# end
 	end
 
 private

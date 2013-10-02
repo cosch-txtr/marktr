@@ -1,0 +1,27 @@
+
+alert("hi");
+
+<% @ratings.each do |r| %>
+	<% 
+		# puts "oshie js:"+@@chart.inspect
+		# @@chart.add_row(["#{r.app.name}", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.rating_nice, r.base]) 		
+	%>	
+
+		chartData['exp'].addRow( <%=[ "fof", Date.new(r.created_at.year,r.created_at.month,r.created_at.day), r.rating_nice, r.base ]%>) 		
+
+<%
+# chartData['exp'] = new google.visualization.DataTable();chartData['exp'].addColumn('string', 'App');chartData['exp'].addColumn('date', 'Date');chartData['exp'].addColumn('number', 'Rating');chartData['exp'].addColumn('number', 'Votes');
+# chartData['exp'].addRows([["txtr", new Date (2013,8,23), 2.8, 6.708203932499369], ["txtr", new Date (2013,8,24), 2.8, 6.708203932499369], ["txtr", new Date (2013,8,25), 2.8, 6.708203932499369], ["txtr", new Date (2013,8,26), 2.8, 6.708203932499369], ["txtr", new Date (2013,8,28), 2.8, 6.708203932499369], ["txtr", new Date (2013,8,30), 2.8, 6.708203932499369], ["txtr", new Date (2013,9,1), 2.8, 6.708203932499369], ["kobo", new Date (2013,8,23), 2.2, 12.489995996796797], ["kobo", new Date (2013,8,24), 2.2, 12.489995996796797], ["kobo", new Date (2013,8,25), 2.2, 12.489995996796797], ["kobo", new Date (2013,8,26), 2.2, 12.489995996796797], ["kobo", new Date (2013,8,28), 2.2, 12.529964086141668], ["kobo", new Date (2013,8,30), 2.2, 12.529964086141668], ["kobo", new Date (2013,9,1), 2.2, 12.569805089976535], ["nook", new Date (2013,8,23), 3.3, 60.19136150644875], ["nook", new Date (2013,8,24), 3.3, 60.22457969965419], ["nook", new Date (2013,8,25), 3.3, 60.29925372672534], ["nook", new Date (2013,8,26), 3.3, 60.36555309114628], ["nook", new Date (2013,8,28), 3.3, 60.43177971895251], ["nook", new Date (2013,8,30), 3.3, 60.54750201288241], ["nook", new Date (2013,9,1), 3.3, 60.58052492344384], ["kindle", new Date (2013,8,23), 3.1, 112.20962525559027], ["kindle", new Date (2013,8,24), 3.1, 112.25862995778988], ["kindle", new Date (2013,8,25), 3.1, 112.4544352171136], ["kindle", new Date (2013,8,26), 3.1, 112.64990013311153], ["kindle", new Date (2013,8,28), 3.1, 112.89375536317321], ["kindle", new Date (2013,8,30), 3.1, 113.26958991715296], ["kindle", new Date (2013,9,1), 3.1, 113.38871196022997]]);
+# visualizationCharts['exp'].draw(chartData['exp']);
+
+	%>
+<% end	%>
+
+drawCharts();
+
+console.log("elements:")
+var v= document.getElementById("exp");
+for(var i = 0; i < v.length; i++) {
+	console.log("foo:"+v)
+}
+console.log("done")
