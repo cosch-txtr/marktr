@@ -29,7 +29,7 @@ ENVIRONMENT=RBENV
 set :output, "#{RAILS_ROOT}/log/#{RAILS_ENV}.bg.log"
 set :job_template, "/bin/bash -l -c ':job'"
 
-every 1.day, :at => '8:30am' do
+every 8.hours do
   command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/daily.rb"  
 end
 
