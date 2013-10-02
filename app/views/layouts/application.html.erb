@@ -14,10 +14,22 @@
         var chartData = {};
         var visualizationCharts = {};
 
+        function buildChartAll() {
+          chartData['exp'] = new google.visualization.DataTable();
+          chartData['exp'].addColumn('string', 'App');
+          chartData['exp'].addColumn('date', 'Date');
+          chartData['exp'].addColumn('number', 'iOS');
+          chartData['exp'].addColumn('number', 'Android');
+          chartData['exp'].addColumn('number', 'Base');
+          visualizationCharts['exp'] = new google.visualization.MotionChart(document.getElementById('exp'));
+        }
+
         function buildChart() {
-        chartData['exp'] = new google.visualization.DataTable();
-          chartData['exp'].addColumn('string', 'App');chartData['exp'].addColumn('date', 'Date');
-          chartData['exp'].addColumn('number', 'Rating');chartData['exp'].addColumn('number', 'Votes');
+          chartData['exp'] = new google.visualization.DataTable();
+          chartData['exp'].addColumn('string', 'App');
+          chartData['exp'].addColumn('date', 'Date');
+          chartData['exp'].addColumn('number', 'Rating');
+          chartData['exp'].addColumn('number', 'Votes');
           visualizationCharts['exp'] = new google.visualization.MotionChart(document.getElementById('exp'));
         }
         

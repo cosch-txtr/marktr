@@ -65,7 +65,7 @@ class AppsController < ApplicationController
 
 	def country
 		#c = set_country_from_params
-
+		@method=@@method
 		self.send( @@method )
 	end
 
