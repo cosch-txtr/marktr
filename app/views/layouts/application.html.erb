@@ -14,6 +14,9 @@
         var chartData = {};
         var visualizationCharts = {};
 
+        var options = { width: 780,height: 600,state: '{\"duration\":{\"multiplier\":1,\"timeUnit\":\"D\"},\"yLambda\":1,\"yZoomedIn\":false,\"playDuration\":15000,\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedIn\":false,\"iconKeySettings\":[],\"orderedByY\":false,\"colorOption\":\"_UNIQUE_COLOR\",\"uniColorForNonSelected\":false,\"yAxisOption\":\"3\",\"showTrails\":true,\"xZoomedDataMin\":2.5,\"xAxisOption\":\"2\",\"xLambda\":1,\"iconType\":\"BUBBLE\",\"yZoomedDataMax\":198.9673340023432,\"yZoomedDataMin\":4.47213595499958,\"orderedByX\":false,\"nonSelectedAlpha\":0.4,\"xZoomedDataMax\":4.5,\"sizeOption\":\"3\"}'};
+
+        var options_all = { }
         function buildChartAll() {
           chartData['exp'] = new google.visualization.DataTable();
           chartData['exp'].addColumn('string', 'App');
@@ -36,8 +39,7 @@
         
         function drawCharts() {         
 
-          visualizationCharts['exp'].draw(chartData['exp'], 
-            { width: 780,height: 600,state: '{\"duration\":{\"multiplier\":1,\"timeUnit\":\"D\"},\"yLambda\":1,\"yZoomedIn\":false,\"playDuration\":15000,\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedIn\":false,\"iconKeySettings\":[],\"orderedByY\":false,\"colorOption\":\"_UNIQUE_COLOR\",\"uniColorForNonSelected\":false,\"yAxisOption\":\"3\",\"showTrails\":true,\"xZoomedDataMin\":2.5,\"xAxisOption\":\"2\",\"xLambda\":1,\"iconType\":\"BUBBLE\",\"yZoomedDataMax\":198.9673340023432,\"yZoomedDataMin\":4.47213595499958,\"orderedByX\":false,\"nonSelectedAlpha\":0.4,\"xZoomedDataMax\":4.5,\"sizeOption\":\"3\"}'});
+          visualizationCharts['exp'].draw(chartData['exp'], options);
     } </script><!-- Rendered Google Visualizations /-->
   
 </head>
