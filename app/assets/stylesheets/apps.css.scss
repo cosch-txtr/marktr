@@ -107,6 +107,11 @@ select {
 	text-transform:uppercase;
 }
 
+select[disabled] { 
+	color:#FFFFFF;
+	background-color:$BGCOLOR; 
+}
+
 /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select {padding-right:18px}

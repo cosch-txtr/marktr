@@ -80,10 +80,8 @@ private
 		if !@country
 
 		elsif (Float(@country) rescue false)
-			puts "oshie:else}"
 			c = Country.find_by_id(@country)
 		else
-			puts "oshie:string}"
 			c = Country.find_by_name(@country)
 		end
 
