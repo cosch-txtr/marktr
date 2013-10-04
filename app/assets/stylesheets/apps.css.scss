@@ -13,7 +13,13 @@ $HLCOLOR: #3399FF;
 
 #menuarea {
 	list-style-type:none;
-	display:inline;
+	margin:0;
+	padding:0;
+	display:inline;	
+	width:30px;
+	position: relative;
+	left: 400px;
+	top: -25px;
 }
 
 .tabarea {
@@ -53,7 +59,7 @@ p {
  background-color: $BGCOLOR; 
  position: relative;
  left: 0px;
- top: -50px;
+ top: -72px;
  width: 800px;
  height: 650px;
  z-index:-1;
@@ -67,5 +73,5 @@ p {
   text-align: center;
   position: relative;
   left: -50px;
-  top: -661px;
+  top: -685px;
 }
