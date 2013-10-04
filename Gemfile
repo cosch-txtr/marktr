@@ -58,3 +58,5 @@ gem 'gvis', '>= 2.0.0'
 
 #tab navi
 gem "tabs_on_rails"
+
+gem "debugger"

@@ -4,7 +4,7 @@ class AppsController < ApplicationController
 		set_tab :all
 		c = set_country_from_params
 		@@method = __method__
-
+		debugger
 		@ratings = []
 		App.joined.each do |app|
 			@ratings += app.joined_rating_country( c )

@@ -71,7 +71,7 @@
       c = ["Default"]
       c+=Country.all.collect {|p| [ p.name, p.id ] }
       %>
-      <% hide=current_tab==:android %>
+      <% hide=current_tab==:android || current_tab==:all %>
       <%= select("post", "country", c, { }, :onchange => 'this.form.mySubmit.click();', :disabled=>hide) 
       
       %>
