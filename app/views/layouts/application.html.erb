@@ -57,37 +57,46 @@
   <%= tab.itunes   'iTunes', "/itunes", :class => 'tabarea'  %>
   <%= tab.win8   'win8', "/win8", :class => 'tabarea'  %>
   <div>
-    <%#=
-<span style="display: inline;">    
-  <div style="float: left; width: auto;">
-    %>
-<%#= button_to "All", country_path(:country => "Default"),  remote: true, :id=>'tabarea' %>
+   
+<%= button_to "All", country_path(:country => "Default"),  remote: true, :id=>'tabarea' %>
 <%#= button_to "DE", country_path(:country => "DE"),  remote: true, :id=>'tabarea' %>
 <%#= button_to "US", country_path(:country => "US"),  remote: true, :id=>'tabarea' %>
 
-<%#=
-</div>   
-</span>
+<%#=this.form.submit()
 %>
-<%= form_for(:country, remote: true, :url=> country_path ) do |f|%>
+<%= form_for(:country, remote: true, :url=> country_path(:country => "Default") ) do |f|%>
     <%#= f.select :country, [ ['All', 0], ['DE', 1], ['US', 2] ], {}, :onchange => 'this.form.submit()' %>
     <div id='menuarea'>
       <%= select("post", "country", Country.all.collect {|p| [ p.name, p.id ] }, { }, :onchange => 
       '
-      var token = "";
-      var tags = document.getElementsByTagName("meta");
-      for(var i = 0; i < tags.length; i++) { 
-        if(tags[i].name == "csrf-param") { 
-          token = tags[i].content;
+      var hasit = false;
+      var childs = this.form.childNodes;
+      for(var i = 0; i < childs.length; i++) { 
+        if(childs[i].name == "authenticity_token") { 
+          hasit = true;
+          console.log("has token allready")
         }
       }
-      var hiddenField = document.createElement("input");
-      hiddenField.setAttribute("type", "hidden");
-      hiddenField.setAttribute("value", token);
 
-      this.form.appendChild(hiddenField);
+      if(!hasit) {
+        var token = "";
+        var tags = document.getElementsByTagName("meta");
+        for(var i = 0; i < tags.length; i++) { 
+          if(tags[i].name == "csrf-token") { 
+            token = tags[i].content;
+            console.log(token)
+          }
+        }
+        
+        var hiddenField = document.createElement("input");
+        hiddenField.setAttribute("name", "authenticity_token");
+        hiddenField.setAttribute("type", "hidden");
+        hiddenField.setAttribute("value", token);
 
-      this.form.submit()') 
+        this.form.appendChild(hiddenField);
+      }
+      this.form.submit();
+      ') 
 
       %>
     </div>
