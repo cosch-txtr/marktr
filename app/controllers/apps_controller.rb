@@ -72,7 +72,21 @@ class AppsController < ApplicationController
 private
 	def set_country_from_params
 		@country = params[:country]	
-		c = Country.find_by_name(@country)
+		if !@country && params[:post]
+			@country = params[:post][:country]
+		end
+
+		c = nil
+		if !@country
+
+		elsif (Float(@country) rescue false)
+			puts "oshie:else}"
+			c = Country.find_by_id(@country)
+		else
+			puts "oshie:string}"
+			c = Country.find_by_name(@country)
+		end
+
 		@country="All" if !c
 		c
 	end
