@@ -23,7 +23,7 @@ RAILS_ENV=ENV['RAILS_ENV'] || 'production'
 RAILS_ROOT= File.expand_path(File.join(File.dirname(__FILE__),"..")) 
 
 RBENV="export RBENV_ROOT=~/.rbenv && export PATH=\"$RBENV_ROOT/bin:$PATH\" && eval \"$(rbenv init -)\" && export RAILS_ENV=#{RAILS_ENV} && "
-RVM="[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && source \"$HOME/.rvm/scripts/rvm\" && "
+RVM="[[ -s \"$HOME/.rvm/scripts/rvm\" ]] && source \"$HOME/.rvm/scripts/rvm\" && export RAILS_ENV=#{RAILS_ENV} && "
 ENVIRONMENT=RBENV
 
 set :output, "#{RAILS_ROOT}/log/#{RAILS_ENV}.bg.log"
