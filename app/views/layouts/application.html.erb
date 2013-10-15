@@ -67,13 +67,15 @@
 <%= form_for(:country, remote: true, :url=> country_path() ) do |f|%>
     <%#= f.select :country, [ ['All', 0], ['DE', 1], ['US', 2] ], {}, :onchange => 'this.form.submit()' %>
     <div id='menuarea'>
-      <%= 
-      e = [["Default",0]]
-      e += Country.all.collect {|p| [ p.name, p.id ] }
-      select("post", "country", e, { } ) 
-
+      <%
+      c = ["Default"]
+      c+=Country.all.collect {|p| [ p.name, p.id ] }
       %>
-      <%= submit_tag "update", :name => nil %>
+      <% hide=current_tab==:android || current_tab==:all %>
+      <%= select("post", "country", c, { }, :onchange => 'this.form.mySubmit.click();', :disabled=>hide) 
+      
+      %>
+      <%= submit_tag "update", :name => "mySubmit", :hidden => true %>
     </div>
 <% end %>
 </div>

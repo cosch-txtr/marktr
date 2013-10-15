@@ -4,7 +4,7 @@ class AppsController < ApplicationController
 		set_tab :all
 		c = set_country_from_params
 		@@method = __method__
-
+		debugger
 		@ratings = []
 		App.joined.each do |app|
 			@ratings += app.joined_rating_country( c )
@@ -80,10 +80,8 @@ private
 		if !@country
 
 		elsif (Float(@country) rescue false)
-			puts "oshie:else}"
 			c = Country.find_by_id(@country)
 		else
-			puts "oshie:string}"
 			c = Country.find_by_name(@country)
 		end
 
