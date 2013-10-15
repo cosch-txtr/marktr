@@ -1,7 +1,7 @@
 DIR = File.dirname(__FILE__)
 require DIR + '/../../config/environment'
 
-puts "running daily workers on #{Rails.env}"
+puts "#{Time.now} - running daily workers on #{Rails.env}"
 
 @androids = Hash.new
 @itunes = Hash.new
@@ -216,5 +216,5 @@ store_win8_ratings
 store_joined_ratings
 ensure_only_one_per_day_and_country
 
-puts "daily workers done...."
+puts "#{Time.now} - daily workers done...."
 
