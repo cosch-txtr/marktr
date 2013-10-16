@@ -33,11 +33,11 @@ every 8.hours do
   command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/daily.rb"  
 end
 
-every 1.hours do
-  command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/hourly.rb"
-end
+#every 1.hours do
+#  command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/hourly.rb"
+#end
 
-every 5.minutes do
-  command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/5minutes.rb"
-end
+#every 5.minutes do
+#  command "#{ENVIRONMENT} cd #{RAILS_ROOT} && ruby #{RAILS_ROOT}/lib/crons/5minutes.rb"
+#end
 
