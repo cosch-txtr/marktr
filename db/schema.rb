@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930124546) do
+ActiveRecord::Schema.define(version: 20131106122744) do
 
   create_table "android_ratings", force: true do |t|
     t.string   "android_id"
@@ -45,6 +45,17 @@ ActiveRecord::Schema.define(version: 20130930124546) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "itunes_ranking", force: true do |t|
+    t.integer  "app_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "device"
+    t.decimal  "rank"
+    t.decimal  "downloads"
+  end
+
+  add_index "itunes_ranking", ["app_id"], name: "index_itunes_ranking_on_app_id"
 
   create_table "itunes_ratings", force: true do |t|
     t.string   "itunes_id"
