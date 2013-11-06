@@ -60,3 +60,6 @@ gem 'gvis', '>= 2.0.0'
 gem "tabs_on_rails"
 
 gem "debugger"
+
+#for config in application.yml
+gem "figaro"
