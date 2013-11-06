@@ -1,4 +1,6 @@
 #!/bin/ruby
+DIR = File.dirname(__FILE__)
+require DIR + '/../../config/environment'
 
 require 'rubygems'
 require "json"
@@ -14,8 +16,8 @@ http.use_ssl = true
 http.verify_mode = OpenSSL::SSL::VERIFY_PEER
 
 request = Net::HTTP::Get.new(uri.request_uri)
-request["X-Client-Key"] = "9450455f8ae94ba290adb898ecdd8371"
-request["Authorization"] = "Basic Y2hyaXN0aWFuLm9zY2h3YWxkQHR4dHIuY29tOnRlc3R0ZXN0" 
+request["X-Client-Key"] = ENV["APPFIG_APP_KEY"]
+request["Authorization"] = ENV["APPFIG_AUTH"]
 
 request.each_header do |key, value|
   p "#{key} => #{value}"
