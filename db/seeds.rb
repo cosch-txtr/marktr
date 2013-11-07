@@ -30,11 +30,15 @@ if !App.find_by_name("txtr")
 	App.create( { :name=>"txtr", :android_id=>"com.txtr.android", 
 				  :itunes_id=>"564715781",  
 				  :win8_id=>"txtr-reader/1e3b5a45-302f-4e99-a4d3-9a2371c2a395",
-				  :country_id=>de.id }) 
+				  :country_id=>de.id,
+				  :itunes_appfig_id=>"219555482",
+				  :android_appfig_id=>"19704980" }) 
 else 
 	a=App.find_by_name("txtr")
 	a.win8_id="txtr-reader/1e3b5a45-302f-4e99-a4d3-9a2371c2a395" if !a.win8_id
 	a.country_id=de.id if !a.country_id
+	a.itunes_appfig_id="219555482" if !a.itunes_appfig_id
+	a.android_appfig_id="19704980" if !a.android_appfig_id
 	a.save!
 end
 
