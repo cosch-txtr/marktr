@@ -24,6 +24,15 @@ else
 	us=Country.find_by_name "US"
 end
 
+if !Country.find_by_name "GLOBAL"
+	global=Country.create({ :name=>"GLOBAL",
+					 	:itunes_country=>"global",
+					 	:win8_country=>"global",
+					 	:android_country=>"global"}) 
+else
+	global=Country.find_by_name "GLOBAL"
+end
+
 #########################################################################################
 
 if !App.find_by_name("txtr") 

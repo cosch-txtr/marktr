@@ -39,7 +39,9 @@ class App < ActiveRecord::Base
 		where("win8_id not NULL").load
 	end
 
-
+	def self.itunes_ranking
+		where("itunes_appfig_id not NULL").load
+	end
 
 	def android_rating_country( country )
 		country = default_country if !country

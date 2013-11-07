@@ -6,18 +6,18 @@ require "uri"
 
 class AppfiguresLoader
 
-	def self.rank_now(app, c)
+	def self.rank_now(app, c=nil)
 		app_country(app,c)
-		uri = URI.parse("https://api.appfigures.com/v2/ranks/#{@id}/daily/#{@date}/#{@date}?countries=#{@country}&tz=utc")
+
+		url="https://api.appfigures.com/v2/ranks/#{@id}/daily/#{@date}/#{@date}?tz=utc"
+		url+="&countries=#{@country}" if c && c!="global"
+
 		
-		response = do_request(uri)
+		response = do_request(url)
 
 		result = JSON.parse(response.body) if response.code == "200"
 
 		if result && result["data"] && result["data"].size!=0		  
-		  #puts uri
-		  #pp result
-
 		  { 
 		  	:"#{result["data"][0]["category"]["device"]}" => result["data"][0]["positions"][0],
 		  	:"#{result["data"][1]["category"]["device"]}" => result["data"][1]["positions"][0]
@@ -27,17 +27,16 @@ class AppfiguresLoader
 		end
 	end
 
-	def self.downloads(app, c)
+	def self.downloads(app, c=nil)
 		app_country(app,c)
-		uri=URI.parse("https://api.appfigures.com/v2/sales?start_date=#{@date}&end_date=#{@date}&granularity=daily&products=#{@id}");
-		response = do_request(uri)
+		url="https://api.appfigures.com/v2/sales?start_date=#{@date}&end_date=#{@date}&granularity=daily&products=#{@id}"
+		url+="&countries=#{@country}" if c && c!="global"
+
+		response = do_request(url)
 
 		result = JSON.parse(response.body) if response.code == "200"
 
 		if result && result["downloads"] && result["updates"]		  
-		  #puts uri
-		  #pp result
-
 		  { 
 		  	:downloads => result["downloads"],
 		  	:updates => result["updates"]
@@ -48,17 +47,17 @@ class AppfiguresLoader
 	end
 
 
-	def self.total_downloads(app, c)
+	def self.total_downloads(app, c=nil)
 		app_country(app,c)
-		uri=URI.parse("https://api.appfigures.com/v2/sales?products=#{@id}");
-		response = do_request(uri)
+		
+		url="https://api.appfigures.com/v2/sales?products=#{@id}"
+		url+="&countries=#{@country}" if c && c!="global"
+
+		response = do_request(url)
 
 		result = JSON.parse(response.body) if response.code == "200"
 
 		if result && result["downloads"] && result["updates"]		  
-		  #puts uri
-		  #pp result
-
 		  { 
 		  	:total_downloads => result["downloads"],
 		  	:total_updates => result["updates"]
@@ -73,11 +72,13 @@ private
 	
 	def self.app_country( app, c )
 		@id = app.itunes_appfig_id
-		@country = c.itunes_country
+		@country = c
 		@date = DateTime.now.yesterday.strftime("%Y-%m-%d")
 	end
 
-	def self.do_request(uri)
+	def self.do_request(url)
+		uri = URI.parse(url)
+		
 		http = Net::HTTP.new(uri.host, uri.port)
 		http.use_ssl = true
 		http.verify_mode = OpenSSL::SSL::VERIFY_PEER
