@@ -23,3 +23,4 @@ module Marktr
 end
 
 require "#{Rails.root}/lib/win_loader" 
+require "#{Rails.root}/lib/appfigures_loader" 
