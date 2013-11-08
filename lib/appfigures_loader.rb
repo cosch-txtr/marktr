@@ -70,8 +70,8 @@ class AppfiguresLoader
 
 private
 	
-	def self.app_country( app, c )
-		@id = app.itunes_appfig_id
+	def self.app_country( appid, c )
+		@id = appid
 		@country = c
 		@date = DateTime.now.yesterday.strftime("%Y-%m-%d")
 	end
