@@ -38,6 +38,26 @@ else
 	a.save!
 end
 
+if !App.find_by_name("Sony Reader EU") 
+	App.create( { :name=>"Sony Reader EU", :android_id=>"com.sony.drbd.tablet.reader.other.global", 
+				  :itunes_id=>"679508418",  
+				  :country_id=>de.id }) 
+else 
+	a=App.find_by_name("Sony Reader EU")
+	a.country_id=us.id if !a.country_id
+	a.save!
+end
+
+if !App.find_by_name("Sony Reader US") 
+	App.create( { :name=>"Sony Reader US", :android_id=>"com.sony.drbd.tablet.reader.other.usca", 
+				  :itunes_id=>"566383171",
+				  :country_id=>us.id }) 
+else 
+	a=App.find_by_name("Sony Reader US")
+	a.country_id=us.id if !a.country_id
+	a.save!
+end
+
 if !App.find_by_name "kobo"
 	App.create( { :name=>"kobo", :android_id=>"com.kobobooks.android", 
 				  :itunes_id=>"301259483", 
