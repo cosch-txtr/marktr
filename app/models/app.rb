@@ -4,6 +4,7 @@ class App < ActiveRecord::Base
 	has_many :itunes_ratings
 	has_many :win8_ratings
 	has_many :joined_ratings
+	has_many :android_daily_ratings
 
 	def default_country
 		Country.find_by_id country_id
@@ -84,6 +85,12 @@ class App < ActiveRecord::Base
 	def win8_today( country=default_country )
 		w = win8_ratings.where("created_at between ? and ? and country_id = ?", Date.today, Date.today.next_day, country.id)
 		return w[0] if w.count>0
+		nil
+	end
+
+	def android_daily_rating( date )
+		a=android_daily_ratings.where("date between ? and ?", date, date.next_day)
+		return a[0] if a.count>0
 		nil
 	end
 end

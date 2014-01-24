@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930124546) do
+ActiveRecord::Schema.define(version: 20140124110339) do
+
+  create_table "android_daily_ratings", force: true do |t|
+    t.integer  "app_id"
+    t.datetime "date"
+    t.decimal  "rating",     precision: 7, scale: 2
+    t.integer  "votes"
+    t.integer  "country_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "android_daily_ratings", ["app_id"], name: "index_android_daily_ratings_on_app_id"
 
   create_table "android_ratings", force: true do |t|
     t.string   "android_id"

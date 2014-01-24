@@ -8,10 +8,10 @@ require "csv"
 require 'date'
 
 debug=false
-#STARTDATE = Date.strptime("20130919","%Y%m%d")
-#ENDDATE = Date.today.next_day
-STARTDATE = Date.strptime("20130930","%Y%m%d")
-ENDDATE = Date.strptime("20140101","%Y%m%d")
+STARTDATE = Date.strptime("20130919","%Y%m%d")
+ENDDATE = Date.today.next_day
+#STARTDATE = Date.strptime("20130930","%Y%m%d")
+#ENDDATE = Date.strptime("20140101","%Y%m%d")
 
 txtr=App.find_by_name("txtr")
 
@@ -66,6 +66,16 @@ CSV.foreach("com.txtr.android_overall_ratings_6M.csv") do |row|
   	overall_r+=day[:rating]
   end
   overall_v+=day[:votes]
+
+  next if txtr.android_daily_rating(date);
+  puts "  creating db enty..."
+  r = txtr.android_daily_ratings.create()
+  r.date=date
+  r.rating=day[:rating]
+  r.votes=day[:votes]
+  r.country_id=txtr.default_country.id
+  r.save!
+  puts "  done!"
 end
 
 puts
