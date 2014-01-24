@@ -45,10 +45,8 @@
           chartData['exp'] = new google.visualization.DataTable();
           chartData['exp'].addColumn('string', 'App');
           chartData['exp'].addColumn('date', 'Date');
-          chartData['exp'].addColumn('number', 'Rating cum.');
-          chartData['exp'].addColumn('number', 'Rating per Day');
-          chartData['exp'].addColumn('number', 'Votes per Day');
-          chartData['exp'].addColumn('number', 'Votes cum.');
+          chartData['exp'].addColumn('number', 'Rating');
+          chartData['exp'].addColumn('number', 'Votes');
           visualizationCharts['exp'] = new google.visualization.MotionChart(document.getElementById('exp'));
           options = options_single;
         }
