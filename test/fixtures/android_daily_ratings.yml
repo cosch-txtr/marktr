@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  app_id: 
+  date: 2014-01-24 12:03:39
+  rating: 
+  votes: 1
+  country_id: 1
+
+two:
+  app_id: 
+  date: 2014-01-24 12:03:39
+  rating: 
+  votes: 1
+  country_id: 1
