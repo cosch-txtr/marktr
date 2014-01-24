@@ -115,6 +115,8 @@ class App < ActiveRecord::Base
 			   r = AndroidDailyRating.new
 			   r.app=txtr
 			   r.date=date
+			   r.votes=0
+			   r.rating=0
 			   r.rating_cum=rating_cum
 			end 
 			rating_cum=r.rating_cum

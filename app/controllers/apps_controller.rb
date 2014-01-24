@@ -110,7 +110,7 @@ private
 		rescue Exception=>e
 		end
 
-		s = Date.strptime("20131021","%Y%m%d") if !s
+		s = Date.strptime("20130919","%Y%m%d") if !s
 		s
 	end
 
