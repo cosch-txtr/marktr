@@ -107,7 +107,7 @@ private
 		s = nil
 				
 		begin			
-			s = Date.strptime(params[:start_date],"%d/%m/%Y") if params[:start_date]
+			s = Date.strptime(params[:app][:start_date],"%Y/%m/%d") if params[:app] && params[:app][:start_date]
 		rescue Exception=>e
 		end
 
@@ -117,13 +117,15 @@ private
 
 	def set_end_from_params
 		e = nil
-		pp "oshie0"
-		pp params[:end_date]		
+		pp "foo set end"
+		pp params[:app][:end_date] if params[:app]
 		begin			
-			e = Date.strptime(params[:end_date],"%d/%m/%Y") if params[:end_date]
+			e = Date.strptime(params[:app][:end_date],"%Y/%m/%d") if params[:app] &&params[:app][:end_date]
 		rescue Exception=>e
 		end
+		pp e
 		e = Date.strptime("20140101","%Y%m%d") if !e
+		pp e
 		e
 	end
 end

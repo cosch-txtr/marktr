@@ -102,7 +102,7 @@ class App < ActiveRecord::Base
 		rating_cum=0;
 		txtr=App.find_by_name("txtr");
 		a = []
-		pp "oshie"
+		pp "foo"
 		pp s
 		pp e
 		(s .. e ).to_a.each { |date|
@@ -113,6 +113,7 @@ class App < ActiveRecord::Base
 			  	overall_r+=r.rating
 			  end
 			  overall_v+=r.votes
+			  r.votes_cum=overall_v
 			  r.rating_cum=overall_r/overall_v
 			else 
 			   r = AndroidDailyRating.new
@@ -120,6 +121,7 @@ class App < ActiveRecord::Base
 			   r.date=date
 			   r.votes=0
 			   r.rating=0
+			   r.votes_cum=overall_v
 			   r.rating_cum=rating_cum
 			end 
 			rating_cum=r.rating_cum

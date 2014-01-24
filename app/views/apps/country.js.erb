@@ -11,7 +11,7 @@
 		<% if @method==:all %>
 			chartData['exp'].addRow([ "<%="#{r.app.name}"%>", new Date(<%=r.created_at.year%>,<%=r.created_at.month-1%>,<%=r.created_at.day%>), <%=r.itunes_rating_nice%>, <%=r.android_rating_nice%>, <%=r.base%> ]) 		
 		<% elsif @method==:android_time%>
-			chartData['exp'].addRow([ "<%="#{r.app.name}"%>", new Date(<%=r.date.year%>,<%=r.date.month-1%>,<%=r.date.day%>), <%=r.rating%>, <%=r.votes%>, <%=r.rating_cum%>]) 		
+			chartData['exp'].addRow([ "<%="#{r.app.name}"%>", new Date(<%=r.date.year%>,<%=r.date.month-1%>,<%=r.date.day%>), <%=r.rating_cum%>, <%=r.rating%>, <%=r.votes%>, <%=r.votes_cum%>]) 		
 		<% else %>
 			chartData['exp'].addRow([ "<%="#{r.app.name}"%>", new Date(<%=r.created_at.year%>,<%=r.created_at.month-1%>,<%=r.created_at.day%>), <%=r.rating_nice%>, <%=r.votes%> ]) 					
 		<% end %>
