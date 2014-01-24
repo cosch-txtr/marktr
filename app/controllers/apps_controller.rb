@@ -46,9 +46,10 @@ class AppsController < ApplicationController
 
 	def android_time
 		set_tab :android_time
-		s = set_start_from_params
-		e = set_end_from_params
 		@@method = __method__
+		c = set_country_from_params
+		s = set_start_from_params
+		e = set_end_from_params		
 
 		@ratings = []
 		app=App.find_by_name('txtr')
@@ -99,14 +100,14 @@ private
 		end
 
 		@country="All" if !c
-		c
+		@country
 	end
 
 	def set_start_from_params
 		s = nil
 				
 		begin			
-			s = Date.strptime(params[:start],"%Y%m%d")
+			s = Date.strptime(params[:start_date],"%d/%m/%Y") if params[:start_date]
 		rescue Exception=>e
 		end
 
@@ -115,7 +116,13 @@ private
 	end
 
 	def set_end_from_params
-		e = params[:end]
+		e = nil
+		pp "oshie0"
+		pp params[:end_date]		
+		begin			
+			e = Date.strptime(params[:end_date],"%d/%m/%Y") if params[:end_date]
+		rescue Exception=>e
+		end
 		e = Date.strptime("20140101","%Y%m%d") if !e
 		e
 	end

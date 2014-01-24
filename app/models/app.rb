@@ -102,6 +102,9 @@ class App < ActiveRecord::Base
 		rating_cum=0;
 		txtr=App.find_by_name("txtr");
 		a = []
+		pp "oshie"
+		pp s
+		pp e
 		(s .. e ).to_a.each { |date|
 			r = android_daily_rating(date)
 			

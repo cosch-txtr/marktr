@@ -60,3 +60,7 @@ gem 'gvis', '>= 2.0.0'
 gem "tabs_on_rails"
 
 gem "debugger"
+
+gem 'datetimepicker-rails', :require => 'datetimepicker-rails', :git => 'git://github.com/zpaulovics/datetimepicker-rails.git'
+
+gem 'simple_form'

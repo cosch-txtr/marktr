@@ -6,6 +6,14 @@
 <div id="exp" class="graph_chart"><!-- /--></div></div>
 </div>
 
+<div id="dates">
+<%= simple_form_for :app,remote: true, :url=> country_path() do |f| %>
+  <%= f.input :start_date, :as => :date_picker %>
+  <%= f.input :end_date, :as => :date_picker %>
+  <%= f.button :submit %>
+<% end %>
+</div>
+
 <script type="text/javascript">
 $.ajax({
     type: 'POST',
