@@ -11,7 +11,9 @@ Marktr::Application.routes.draw do
   get 'win8' => 'apps#win8'
   get 'exp' => 'apps#exp'
   get 'all' => 'apps#all'
+  get 'android_time' => 'apps#android_time'
   post 'country' => 'apps#country'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

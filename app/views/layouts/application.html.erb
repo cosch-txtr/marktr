@@ -40,6 +40,17 @@
           visualizationCharts['exp'] = new google.visualization.MotionChart(document.getElementById('exp'));
           options = options_single;
         }
+
+        function buildChartByTime() {
+          chartData['exp'] = new google.visualization.DataTable();
+          chartData['exp'].addColumn('string', 'App');
+          chartData['exp'].addColumn('date', 'Date');
+          chartData['exp'].addColumn('number', 'Rating per Day');
+          chartData['exp'].addColumn('number', 'Votes per Day');
+          chartData['exp'].addColumn('number', 'Rating cum.');
+          visualizationCharts['exp'] = new google.visualization.MotionChart(document.getElementById('exp'));
+          options = options_single;
+        }
         
         
         function drawCharts() {         
@@ -56,6 +67,7 @@
   <%= tab.android 'Android', "/android", :class => 'tabarea'  %>
   <%= tab.itunes   'iTunes', "/itunes", :class => 'tabarea'  %>
   <%= tab.win8   'win8', "/win8", :class => 'tabarea'  %>
+  <%= tab.android_time   'txtr android', "/android_time", :class => 'tabarea'  %>
   <div>
    
 <%#= button_to "All", country_path(:country => "Default"),  remote: true, :id=>'tabarea' %>

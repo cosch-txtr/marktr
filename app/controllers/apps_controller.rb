@@ -44,6 +44,19 @@ class AppsController < ApplicationController
 		end
 	end
 
+	def android_time
+		set_tab :android_time
+		s = set_start_from_params
+		e = set_end_from_params
+		@@method = __method__
+
+		@ratings = []
+		app=App.find_by_name('txtr')
+		
+		@ratings = app.android_daily_rating_cum( s, e )	
+	end
+
+
 	def exp
 		set_tab :exp
 		c = set_country_from_params
@@ -87,5 +100,23 @@ private
 
 		@country="All" if !c
 		c
+	end
+
+	def set_start_from_params
+		s = nil
+				
+		begin			
+			s = Date.strptime(params[:start],"%Y%m%d")
+		rescue Exception=>e
+		end
+
+		s = Date.strptime("20131021","%Y%m%d") if !s
+		s
+	end
+
+	def set_end_from_params
+		e = params[:end]
+		e = Date.strptime("20140101","%Y%m%d") if !e
+		e
 	end
 end

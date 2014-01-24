@@ -93,4 +93,33 @@ class App < ActiveRecord::Base
 		return a[0] if a.count>0
 		nil
 	end
+
+	def android_daily_rating_cum( s, e )
+		#a=android_daily_ratings.where("date between ? and ?", s, e)
+		votes_cum=0;
+		overall_v=0;
+		overall_r=0;
+		rating_cum=0;
+		txtr=App.find_by_name("txtr");
+		a = []
+		(s .. e ).to_a.each { |date|
+			r = android_daily_rating(date)
+			
+			if r
+				for i in 1..r.votes
+			  	overall_r+=r.rating
+			  end
+			  overall_v+=r.votes
+			  r.rating_cum=overall_r/overall_v
+			else 
+			   r = AndroidDailyRating.new
+			   r.app=txtr
+			   r.date=date
+			   r.rating_cum=rating_cum
+			end 
+			rating_cum=r.rating_cum
+			a.append r
+		}
+		a
+	end
 end
