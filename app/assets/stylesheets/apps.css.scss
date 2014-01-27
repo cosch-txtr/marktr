@@ -159,3 +159,9 @@ label:before {
     pointer-events:none;
     display:block;
 }
+
+#loading-indicator {
+  position: relative;
+  left: 320px;
+  top: -450px;
+}

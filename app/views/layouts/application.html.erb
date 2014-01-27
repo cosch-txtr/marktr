@@ -74,6 +74,16 @@
             var picker=$('#app_end_date').parent().data('datetimepicker')
             picker.setDate(date);
         }
+
+        function loadingstarted() {
+          $('#middle-element').hide()
+          $('#loading-indicator').show()          
+        }
+
+        function loadingfinished() {
+          $('#loading-indicator').hide()          
+          $('#middle-element').show()          
+        }
   </script><!-- Rendered Google Visualizations /-->
   
 </head>
@@ -102,7 +112,7 @@
       c+=Country.all.collect {|p| [ p.name, p.id ] }
       %>
       <% hide=current_tab==:android || current_tab==:all %>
-      <%= select("post", "country", c, { }, :onchange => 'this.form.mySubmit.click();', :disabled=>hide) 
+      <%= select("post", "country", c, { }, :onchange => 'loadingstarted();this.form.mySubmit.click();', :disabled=>hide) 
       
       %>
       <%= submit_tag "update", :name => "mySubmit", :hidden => true %>
@@ -114,6 +124,17 @@
 
 <p>
 </p>
+
+<%= image_tag "ajax-loader.gif", :id=>"loading-indicator", :style=>"display:none" %>
+
+<script type="text/javascript">
+hide_date_input();
+loadingstarted();
+$.ajax({
+    type: 'POST',
+    url: '<%=country_path(:country => "Default")%>'    
+});
+</script>
 
 <%= yield %>
 

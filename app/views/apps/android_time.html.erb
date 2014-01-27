@@ -13,11 +13,3 @@
   <%= f.button :submit, :id =>"timebtn", :Value=>"set range" %>
 <% end %>
 </div>
-
-<script type="text/javascript">
-$.ajax({
-    type: 'POST',
-    url: '<%=country_path(:country => "Default")%>'    
-});
-
-</script>

@@ -20,6 +20,8 @@ var d = new Date(<%=@end_date.year%>,<%=@end_date.month-1%>,<%=@end_date.day%>);
 set_end_date(d);
 <% end%>
 
+loadingfinished();
+
 
 <% @ratings.each do |r| %>
 		<% if @method==:all %>
