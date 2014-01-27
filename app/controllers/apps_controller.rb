@@ -112,7 +112,7 @@ private
 		rescue Exception=>e
 		end
 
-		s = Date.strptime("20130919","%Y%m%d") if !s
+		s = Date.strptime("20131001","%Y%m%d") if !s
 		@start_date=s.next_day
 		s
 	end
