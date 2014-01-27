@@ -81,7 +81,22 @@ p {
 
 #dates {
   position: relative;
+  top: -500px;
 }
+
+#timebtn {
+  position: relative;
+  top: -250px;
+  left: 1120px;
+}
+
+.datepicker {
+      position: relative;
+      top: -1190px;
+      left: 1115px;
+      width: 80px;      
+  }
+
 
 /* The CSS */
 select {

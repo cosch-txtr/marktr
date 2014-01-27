@@ -18,6 +18,9 @@
 
         var options_all = { width: 780,height: 600,state: '{\"duration\":{"multiplier\":1,\"timeUnit\":\"D\"},\"yLambda\":1,\"nonSelectedAlpha\":0.4,\"playDuration\":15000,\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"uniColorForNonSelected\":false,\"orderedByX\":false,\"iconKeySettings\":[],\"yZoomedIn\":false,\"colorOption\":\"_UNIQUE_COLOR\",\"xAxisOption\":\"2\",\"yZoomedDataMax\":5,\"xZoomedDataMin\":1,\"orderedByY\":false,\"xLambda\":1,\"iconType\":\"BUBBLE\",\"showTrails\":true,\"yZoomedDataMin\":1,\"yAxisOption\":\"3\",\"xZoomedIn\":false,\"xZoomedDataMax\":5,\"sizeOption\":\"4\"}'};
 
+        var options_time = { width: 780,height: 600,state: '{\"xZoomedIn\":false,\"yAxisOption\":\"2\",\"xAxisOption\":\"_TIME\",\"orderedByX\":false,\"xLambda\":1,\"yZoomedIn\":false,\"iconType\":\"LINE\",\"nonSelectedAlpha\":0.4,\"iconKeySettings\":[{\"key\":{\"dim0\":\"cumultativ\"}}],\"orderedByY\":false,\"xZoomedDataMax\":1388534400000,\"uniColorForNonSelected\":false,\"sizeOption\":\"_UNISIZE\",\"yLambda\":1,\"yZoomedDataMax\":5,\"yZoomedDataMin\":0,\"time\":\"2014\",\"showTrails\":false,\"dimensions\":{\"iconDimensions\":[\"dim0\"]},\"xZoomedDataMin\":1382227200000,\"duration\":{\"timeUnit\":\"D\",\"multiplier\":1},\"colorOption\":\"_UNIQUE_COLOR\",\"playDuration\":15000}'};
+
+
         var options = options_all;
 
         function buildChartAll() {
@@ -48,14 +51,30 @@
           chartData['exp'].addColumn('number', 'Rating');
           chartData['exp'].addColumn('number', 'Votes');
           visualizationCharts['exp'] = new google.visualization.MotionChart(document.getElementById('exp'));
-          options = options_single;
+          options = options_time;
         }
         
         
         function drawCharts() {         
 
           visualizationCharts['exp'].draw(chartData['exp'], options);
-    } </script><!-- Rendered Google Visualizations /-->
+        } 
+
+        function hide_date_input() {
+            $('.input.date_picker.required.app_start_date').hide()
+            $('.input.date_picker.required.app_end_date').hide()
+        }
+
+        function set_start_date(date) {
+            var picker=$('.datepicker').data('datetimepicker')
+            picker.setDate(date);
+        }
+
+        function set_end_date(date) {
+            var picker=$('#app_end_date').parent().data('datetimepicker')
+            picker.setDate(date);
+        }
+  </script><!-- Rendered Google Visualizations /-->
   
 </head>
 <body>

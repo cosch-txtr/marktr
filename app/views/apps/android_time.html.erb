@@ -8,9 +8,9 @@
 
 <div id="dates">
 <%= simple_form_for :app,remote: true, :url=> country_path() do |f| %>
-  <%= f.input :start_date, :as => :date_picker %>
-  <%= f.input :end_date, :as => :date_picker %>
-  <%= f.button :submit %>
+  <div id="startdate"><%= f.input :start_date, :as => :date_picker %> </div>
+  <%= f.input :end_date, :id=>"enddate", :as => :date_picker %>
+  <%= f.button :submit, :id =>"timebtn", :Value=>"set range" %>
 <% end %>
 </div>
 

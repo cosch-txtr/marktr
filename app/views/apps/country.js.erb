@@ -7,6 +7,20 @@
 	buildChart();
 <% end %>
 
+
+hide_date_input();
+
+<% if @start_date %>
+var d = new Date(<%=@start_date.year%>,<%=@start_date.month-1%>,<%=@start_date.day%>);
+set_start_date(d);
+<% end%>
+
+<% if @end_date %>
+var d = new Date(<%=@end_date.year%>,<%=@end_date.month-1%>,<%=@end_date.day%>);
+set_end_date(d);
+<% end%>
+
+
 <% @ratings.each do |r| %>
 		<% if @method==:all %>
 			chartData['exp'].addRow([ "<%="#{r.app.name}"%>", new Date(<%=r.created_at.year%>,<%=r.created_at.month-1%>,<%=r.created_at.day%>), <%=r.itunes_rating_nice%>, <%=r.android_rating_nice%>, <%=r.base%> ]) 		

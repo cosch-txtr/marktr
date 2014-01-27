@@ -113,20 +113,20 @@ private
 		end
 
 		s = Date.strptime("20130919","%Y%m%d") if !s
+		@start_date=s.next_day
 		s
 	end
 
 	def set_end_from_params
 		e = nil
-		pp "foo set end"
-		pp params[:app][:end_date] if params[:app]
+
 		begin			
 			e = Date.strptime(params[:app][:end_date],"%Y/%m/%d") if params[:app] &&params[:app][:end_date]
 		rescue Exception=>e
 		end
-		pp e
+
 		e = Date.strptime("20140101","%Y%m%d") if !e
-		pp e
+		@end_date=e.next_day
 		e
 	end
 end
