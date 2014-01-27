@@ -10,6 +10,6 @@
 <%= simple_form_for :app,remote: true, :url=> country_path() do |f| %>
   <div id="startdate"><%= f.input :start_date, :as => :date_picker %> </div>
   <%= f.input :end_date, :id=>"enddate", :as => :date_picker %>
-  <%= f.button :submit, :id =>"timebtn", :Value=>"set range" %>
+  <%= f.button :submit, :id =>"timebtn", :Value=>"set range", :onsubmit => 'loadingstarted();' %>
 <% end %>
 </div>
