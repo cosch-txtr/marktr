@@ -112,7 +112,7 @@ private
 		rescue Exception=>e
 		end
 
-		s = Date.strptime("20131001","%Y%m%d") if !s
+		s = Date.strptime("20140101","%Y%m%d") if !s
 		@start_date=s.next_day
 		s
 	end
@@ -125,7 +125,7 @@ private
 		rescue Exception=>e
 		end
 
-		e = Date.strptime("20140101","%Y%m%d") if !e
+		e = Date.strptime("20140401","%Y%m%d") if !e
 		@end_date=e.next_day
 		e
 	end
